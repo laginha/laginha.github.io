@@ -10,13 +10,13 @@ class Profile extends Component {
         <Avatar gravatar="diogo.laginha.machado@gmail.com"/>
         <div id='contacts'>
           <a href="http://twitter.diogolaginha.com">
-            <MiniLogo image="/twitter-logo.png" style={{marginBottom: '10px'}}/>
+            <MiniLogo image="/img/twitter-logo.png" style={{marginBottom: '10px'}}/>
           </a>
           <a href="https://github.com/laginha">
-            <MiniLogo image="/github-logo.png"/>
+            <MiniLogo image="/img/github-logo.png"/>
           </a>
           <a href="mailto:diogo.laginha.machado@gmail.com">
-            <MiniLogo image="/gmail-logo.png" style={{marginBottom: '10px'}} />
+            <MiniLogo image="/img/gmail-logo.png" style={{marginBottom: '10px'}} />
           </a>
         </div>
         <h4 id='name'> Diogo Laginha </h4>
