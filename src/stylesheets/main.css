@@ -5,7 +5,8 @@ body {
 #profile {
   text-align: center;
   width: 100%;
-  padding: 2rem;
+  padding-bottom: 2rem;
+  padding-top: 100px;
 }
 #profile .gravatar.circle {
   border: 3px solid #607d8b;
@@ -14,7 +15,7 @@ body {
 #profile #contacts {
   width: 100%;
   position: absolute;
-  top: 175px;
+  top: 245px;
   left: 0px;
 }
 #profile #contacts .mini-logo {
