@@ -20,6 +20,13 @@ const projects = [{
     content: <p>
       In 2016 I embraced a new challenge at Science Matters, a startup that aims to create a collaborative science publishing platform and disrupt the academic publication industry via nano-publication and open access. During this time, I got acquainted with several Javascript frameworks and <span className="skill">MongoDB</span>.
     </p>
+  },{
+    title: 'Soundy',
+    link: 'https://www.soundy.top',
+    image: '/img/soundy-logo.png',
+    content: <p>
+      Late 2016 I joined a vibrant start-up factory named Whitesmith. I learned the basics about Rails 5.0 and I was able to apply my <span className="skill">ReactJS</span> knowledge in the renewed Soundy project - giphy for sounds.
+    </p>
   }
 ]
 
