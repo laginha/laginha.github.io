@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tile {
+  transition: left 0.4s, top 0.4s;
+  background-image: url('https://avatars.githubusercontent.com/u/25960');
+  background-size: 24rem; /* to match h-96 and w-96 of puzzle size*/
+  background-repeat: no-repeat;
+}
+.empty {
+  transition: background-image 0.2s;
+  background-position: center center !important;
+  background-size: 7.9rem !important;
+}
+
+.tile[data-index='0'] {
+  left: 0;
+  top: 0;
+}
+.tile[data-index='1'] {
+  left: 8rem;
+  top: 0;
+}
+.tile[data-index='2'] {
+  left: 16rem;
+  top: 0;
+}
+.tile[data-index='3'] {
+  left: 0;
+  top: 8rem;
+}
+.tile[data-index='4'] {
+  left: 8rem;
+  top: 8rem;
+}
+.tile[data-index='5'] {
+  left: 16rem;
+  top: 8rem;
+}
+.tile[data-index='6'] {
+  left: 0;
+  top: 16rem;
+}
+.tile[data-index='7'] {
+  left: 8rem;
+  top: 16rem;
+}
+.tile[data-index='8'] {
+  left: 16rem;
+  top: 16rem;
+}
+
+.empty[data-index='0'] {
+  background-image: url('./icons/family.svg');
+}
+.empty[data-index='1'] {
+  background-image: url('./icons/snooker.svg');
+}
+.empty[data-index='2'] {
+  background-image: url('./icons/team.svg');
+}
+.empty[data-index='3'] {
+  background-image: url('./icons/react.svg');
+}
+.empty[data-index='4'] {
+  background-image: url('./icons/typescript.svg');
+}
+.empty[data-index='5'] {
+  background-image: url('./icons/tailwind.svg');
+}
+.empty[data-index='6'] {
+  background-image: url('./icons/database.svg');
+}
+.empty[data-index='7'] {
+  background-image: url('./icons/rocket.svg');
+}
+.empty[data-index='8'] {
+  background-image: url('./icons/ai.svg');
+}
+
+.tile[data-pos='0'] {
+  background-position: left top;
+}
+.tile[data-pos='1'] {
+  background-position: center top;
+}
+.tile[data-pos='2'] {
+  background-position: right top;
+}
+.tile[data-pos='3'] {
+  background-position: left center;
+}
+.tile[data-pos='4'] {
+  background-position: center center;
+}
+.tile[data-pos='5'] {
+  background-position: right center;
+}
+.tile[data-pos='6'] {
+  background-position: left bottom;
+}
+.tile[data-pos='7'] {
+  background-position: center bottom;
+}
+.tile[data-pos='8'] {
+  background-position: right bottom;
+}
