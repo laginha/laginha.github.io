@@ -134,7 +134,7 @@ const Topics: { title: string; children: ReactNode }[] = [
   {
     title: 'CSS',
     children: (
-      <Topic tags={['frontend', 'novice']}>
+      <Topic tags={['frontend', 'tailwind', 'novice']}>
         <p>
           My initial mistrust kept me away from doing CSS for quite some time.
           However, my perspective began to shift when I was introduced to
