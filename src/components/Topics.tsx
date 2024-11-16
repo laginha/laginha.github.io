@@ -191,7 +191,10 @@ const Topics: { title: string; children: ReactNode }[] = [
           <Project role="Tech lead" href="https://mishe.co/">
             develop the product from scratch on top of coding best practices
           </Project>
-          <Project role="Full-stack developer" href="https://mishe.co/">
+          <Project
+            role="Full-stack developer"
+            href="https://createacademy.com/"
+          >
             re-build the application with special focus on scalability and
             availability
           </Project>
