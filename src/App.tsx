@@ -5,7 +5,7 @@ import Link from '@/components/Link'
 import Modal from '@/components/Modal'
 import Puzzle from '@/components/Puzzle'
 import TOPIC_LIST from '@/components/topic-list'
-import { shuffle } from '@/utils/swap'
+import { usePuzzle } from '@/utils/usePuzzle'
 
 const ICONS = TOPIC_LIST.map((topic) => topic.icon)
 
@@ -16,6 +16,7 @@ function App() {
   const closeModal = useCallback(() => setSelectedTopic(null), [])
 
   const topic = TOPIC_LIST[selectedTopic ?? 0]
+  const puzzle = usePuzzle()
 
   return (
     <div className="flex flex-col gap-6 items-center mx-auto w-min">
@@ -24,8 +25,13 @@ function App() {
         positioned correctly and click on the empty square to find more about me
         or simply go to my <Link href="/cv.html">CV</Link>
       </p>
-      <Puzzle icons={ICONS} onEmptyTileClick={setSelectedTopic} />
-      <Button className="w-full" onClick={shuffle}>
+      <Puzzle
+        board={puzzle.board}
+        icons={ICONS}
+        onSlide={puzzle.slide}
+        onEmptyTileClick={setSelectedTopic}
+      />
+      <Button className="w-full" onClick={puzzle.shuffle}>
         reshuffle
       </Button>
       <Modal

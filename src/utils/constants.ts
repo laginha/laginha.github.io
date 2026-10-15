@@ -6,5 +6,3 @@ if (!Number.isInteger(GRID_SIZE)) {
     `TOPIC_LIST must have a square number of topics, got ${TOPIC_LIST.length}`
   )
 }
-export const EMPTY_TILE_HOME_SLOT = 0
-export const SLOTS = [...Array(GRID_SIZE ** 2).keys()]

@@ -1,90 +1,82 @@
 import {
   type ComponentProps,
   type CSSProperties,
-  type MouseEvent,
-  useEffect,
+  type KeyboardEvent,
   useId
 } from 'react'
 
 import Tile from '@/components/Tile'
+import { isArrowKey, tileForArrowKey } from '@/utils/arrowKeys'
 import { cn } from '@/utils/cn'
-import { EMPTY_TILE_HOME_SLOT, GRID_SIZE, SLOTS } from '@/utils/constants'
-import {
-  pictureVariables,
-  shuffle,
-  slideWithArrowKey,
-  swapTiles,
-  tileLabel,
-  tileVariables
-} from '@/utils/swap'
+import { GRID_SIZE } from '@/utils/constants'
+import { type Board, EMPTY_TILE_HOME_SLOT } from '@/utils/puzzle'
 
 interface PuzzleProps extends ComponentProps<'div'> {
+  board: Board
   icons: string[]
+  onSlide: (homeSlot: number) => void
   onEmptyTileClick?: (currentSlot: number) => void
 }
 
+const tileStyle = (homeSlot: number, currentSlot: number) =>
+  ({
+    '--current-column': currentSlot % GRID_SIZE,
+    '--current-row': Math.floor(currentSlot / GRID_SIZE),
+    '--home-column': homeSlot % GRID_SIZE,
+    '--home-row': Math.floor(homeSlot / GRID_SIZE)
+  }) as CSSProperties
+
 function Puzzle({
+  board,
   icons,
+  onSlide,
   onEmptyTileClick,
   className,
   style,
   ...props
 }: PuzzleProps) {
-  // swap.ts moves tiles outside React, so the empty tile can't get its icon as
-  // a prop. Expose each icon as --icon-N and let tileVariables pick one
-  const iconVariables = Object.fromEntries(
-    icons.map((icon, index) => [
-      `--icon-${index}`,
-      `url(${JSON.stringify(icon)})`
-    ])
-  ) as CSSProperties
-
-  const onEmptyClick = (e: MouseEvent<HTMLButtonElement>) => {
-    const { currentSlot } = e.currentTarget.dataset
-    if (currentSlot && onEmptyTileClick) {
-      onEmptyTileClick(Number(currentSlot))
-    }
-  }
-
   const instructionsId = useId()
 
-  useEffect(() => shuffle(), [])
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (!isArrowKey(e.key)) return
+    e.preventDefault()
+    const homeSlot = tileForArrowKey(board, e.key)
+    if (homeSlot !== undefined) onSlide(homeSlot)
+  }
 
   return (
     <div
       role="group"
       aria-label="Sliding puzzle"
       aria-describedby={instructionsId}
-      onKeyDown={slideWithArrowKey}
+      onKeyDown={onKeyDown}
       className={cn('puzzle relative size-(--puzzle)', className)}
-      style={
-        { '--grid': GRID_SIZE, ...iconVariables, ...style } as CSSProperties
-      }
+      style={{ '--grid': GRID_SIZE, ...style } as CSSProperties}
       {...props}
     >
-      {/* Tiles render in their home slots; shuffle() then moves them */}
-      {SLOTS.map((homeSlot) => (
-        <Tile
-          key={homeSlot}
-          data-current-slot={homeSlot}
-          data-home-slot={homeSlot}
-          style={
-            {
-              ...pictureVariables(homeSlot),
-              ...tileVariables(homeSlot)
-            } as CSSProperties
-          }
-          isEmpty={homeSlot === EMPTY_TILE_HOME_SLOT}
-          aria-label={tileLabel(homeSlot, homeSlot)}
-          onClick={homeSlot === EMPTY_TILE_HOME_SLOT ? onEmptyClick : swapTiles}
-        />
-      ))}
+      {board.map((currentSlot, homeSlot) => {
+        const isEmpty = homeSlot === EMPTY_TILE_HOME_SLOT
+        const icon = icons[currentSlot]
+        return (
+          <Tile
+            key={homeSlot}
+            isEmpty={isEmpty}
+            style={
+              {
+                ...tileStyle(homeSlot, currentSlot),
+                ...(isEmpty &&
+                  icon && { '--icon': `url(${JSON.stringify(icon)})` })
+              } as CSSProperties
+            }
+            onClick={() =>
+              isEmpty ? onEmptyTileClick?.(currentSlot) : onSlide(homeSlot)
+            }
+          />
+        )
+      })}
       <p id={instructionsId} className="sr-only">
-        Pieces are numbered by where they belong in the picture, left to right
-        and top to bottom, with the empty slot at the top left. Use the arrow
-        keys to slide a piece into the empty slot.
+        Use the arrow keys to slide a piece into the empty slot.
       </p>
-      <p className="sr-only" aria-live="polite" data-puzzle-status />
     </div>
   )
 }
