@@ -17,7 +17,7 @@ function App() {
     <div
       className={cn(
         'flex flex-col gap-6 items-center mx-auto',
-        PUZZLE_WIDTH_CLASSES[PUZZLE_SIZE],
+        PUZZLE_WIDTH_CLASSES[PUZZLE_SIZE]
       )}
     >
       <p className="text-left text-gray-600">
@@ -25,7 +25,7 @@ function App() {
         the empty square to find more about me or simply go to my{' '}
         <Link href="/cv.html">CV</Link>
       </p>
-      <Puzzle onEmpty={(index) => setShowModal(index)} />
+      <Puzzle onEmpty={setShowModal} />
       <Button className="w-full" onClick={shuffle}>
         reshuffle
       </Button>

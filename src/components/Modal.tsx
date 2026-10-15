@@ -1,4 +1,9 @@
-import { useEffect, SVGProps, ReactNode, MouseEvent } from 'react'
+import {
+  useEffect,
+  type ReactNode,
+  type MouseEvent,
+  type ComponentProps
+} from 'react'
 
 interface ModalProps {
   isOpen: boolean
@@ -7,14 +12,12 @@ interface ModalProps {
   children: ReactNode
 }
 
-const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
+function Modal({ isOpen, onClose, title, children }: ModalProps) {
   useEffect(() => {
     if (!isOpen || !onClose) return
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose()
-      }
+      if (event.key === 'Escape') onClose()
     }
 
     window.addEventListener('keydown', handleEscape)
@@ -24,9 +27,7 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
   if (!isOpen || !onClose) return null
 
   const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) {
-      onClose()
-    }
+    if (event.target === event.currentTarget) onClose()
   }
 
   return (
@@ -51,21 +52,23 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
   )
 }
 
-const CloseIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 14 14"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
-    <path
-      d="M13.0938 0.90625L0.90625 13.0938M0.90625 0.90625L13.0938 13.0938"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
+function CloseIcon(props: ComponentProps<'svg'>) {
+  return (
+    <svg
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 14 14"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M13.0938 0.90625L0.90625 13.0938M0.90625 0.90625L13.0938 13.0938"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
 
 export default Modal

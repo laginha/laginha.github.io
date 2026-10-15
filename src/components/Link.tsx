@@ -1,14 +1,14 @@
-import { ReactNode } from 'react'
+import type { ComponentProps } from 'react'
 
-const Link = ({ href, children }: { href: string; children?: ReactNode }) => (
-  <a
-    className="text-blue-500 hover:text-blue-700"
-    href={href}
-    target="_blank"
-    rel="noreferrer"
-  >
-    {children || href}
-  </a>
-)
+function Link({ href, children, ...props }: ComponentProps<'a'>) {
+  return (
+    <a
+      className="text-blue-500 hover:text-blue-700"
+      target="_blank"
+      rel="noreferrer"
+      {...props}
+    />
+  )
+}
 
 export default Link

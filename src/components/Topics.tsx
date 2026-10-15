@@ -1,18 +1,20 @@
-import { HTMLAttributes, ReactNode } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 import Link from '@/components/Link'
 
-interface TopicProps extends HTMLAttributes<HTMLDivElement> {
+interface TopicProps extends ComponentProps<'div'> {
   tags: string[]
 }
 
-const Topic = ({ tags, children }: TopicProps) => (
-  <div className="flex  flex-col gap-4 text-left">
-    {children}
-    <p className="text-blue-400 flex items-center justify-end">
-      {tags.map((each) => ` #${each}`)}
-    </p>
-  </div>
-)
+function Topic({ tags, children }: TopicProps) {
+  return (
+    <div className="flex flex-col gap-4 text-left">
+      {children}
+      <p className="text-blue-400 flex items-center justify-end">
+        {tags.map((each) => ` #${each}`)}
+      </p>
+    </div>
+  )
+}
 
 interface ProjectProps {
   role: string
@@ -20,21 +22,25 @@ interface ProjectProps {
   children: ReactNode
 }
 
-const Project = ({ role, href, children }: ProjectProps) => (
-  <ListItem>
-    <p>
-      {role} at <Link href={href} />
-    </p>
-    <p className="text-sm text-gray-600">{children}</p>
-  </ListItem>
-)
+function Project({ role, href, children }: ProjectProps) {
+  return (
+    <ListItem>
+      <p>
+        {role} at <Link href={href} />
+      </p>
+      <p className="text-sm text-gray-600">{children}</p>
+    </ListItem>
+  )
+}
 
-const ListItem = ({ children }: { children: ReactNode }) => (
-  <div className="flex mt-2">
-    <span className="mr-2">•</span>
-    <div>{children}</div>
-  </div>
-)
+function ListItem({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex mt-2">
+      <span className="mr-2">•</span>
+      <div>{children}</div>
+    </div>
+  )
+}
 
 const Topics: { title: string; children: ReactNode }[] = [
   // 0
@@ -54,7 +60,7 @@ const Topics: { title: string; children: ReactNode }[] = [
           ones.
         </p>
       </Topic>
-    ),
+    )
   },
   // 1
   {
@@ -72,7 +78,7 @@ const Topics: { title: string; children: ReactNode }[] = [
           the moment, away from daily anxieties - until I miss an easy shot.
         </p>
       </Topic>
-    ),
+    )
   },
   // 2
   {
@@ -90,7 +96,7 @@ const Topics: { title: string; children: ReactNode }[] = [
           body of a nonagenarian
         </p>
       </Topic>
-    ),
+    )
   },
   // 3
   {
@@ -109,7 +115,7 @@ const Topics: { title: string; children: ReactNode }[] = [
           vercel - pun intended
         </p>
       </Topic>
-    ),
+    )
   },
   // 4
   {
@@ -128,7 +134,7 @@ const Topics: { title: string; children: ReactNode }[] = [
           codebase - giving me more time to enjoy anything but debugging
         </p>
       </Topic>
-    ),
+    )
   },
   // 5
   {
@@ -147,7 +153,7 @@ const Topics: { title: string; children: ReactNode }[] = [
           flex-grow in this field.
         </p>
       </Topic>
-    ),
+    )
   },
   // 7
   {
@@ -168,7 +174,7 @@ const Topics: { title: string; children: ReactNode }[] = [
           experience and application logic - no more dreadful backend work.
         </p>
       </Topic>
-    ),
+    )
   },
   // 7
   {
@@ -200,7 +206,7 @@ const Topics: { title: string; children: ReactNode }[] = [
           </Project>
         </div>
       </Topic>
-    ),
+    )
   },
   // 8
   {
@@ -227,8 +233,8 @@ const Topics: { title: string; children: ReactNode }[] = [
           streamline tasks - hoping one day to be fully emancipated
         </p>
       </Topic>
-    ),
-  },
+    )
+  }
 ]
 
 export default Topics
