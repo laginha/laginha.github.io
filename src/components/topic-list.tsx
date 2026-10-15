@@ -72,11 +72,11 @@ const TOPICS: { title: string; children: ReactNode }[] = [
         <p>
           While juggling family and work, we often forget to nurture our
           well-being. To maintain my mental health in check, I try to escape
-          from overwhelming responsabilities by reading a book.
+          from overwhelming responsibilities by reading a book.
         </p>
         <p>
           It was only recently that I've discovered a passion for English
-          Snooker. Playing on the 12-foot table, I find myself fully immerse in
+          Snooker. Playing on the 12-foot table, I find myself fully immersed in
           the moment, away from daily anxieties - until I miss an easy shot.
         </p>
       </Topic>
@@ -132,7 +132,7 @@ const TOPICS: { title: string; children: ReactNode }[] = [
         </p>
         <p>
           As I gradually integrated Typescript into my workflow, I began to
-          appreciate its ability to bring robutness and reliability to my
+          appreciate its ability to bring robustness and reliability to my
           codebase - giving me more time to enjoy anything but debugging
         </p>
       </Topic>
@@ -194,7 +194,7 @@ const TOPICS: { title: string; children: ReactNode }[] = [
         <div>
           <Project role="Tech lead" href="https://wageforwork.com">
             rethink the user experience and improve the overall code quality and
-            robutness
+            robustness
           </Project>
           <Project role="Tech lead" href="https://mishe.co/">
             develop the product from scratch on top of coding best practices
@@ -222,7 +222,7 @@ const TOPICS: { title: string; children: ReactNode }[] = [
         </p>
         <div>
           <ListItem>Setup development environments.</ListItem>
-          <ListItem>Improve code quality and robutness.</ListItem>
+          <ListItem>Improve code quality and robustness.</ListItem>
           <ListItem>Write useful documentation.</ListItem>
           <ListItem>Automate repetitive tasks.</ListItem>
           <ListItem>Outline components with a given mockup.</ListItem>
