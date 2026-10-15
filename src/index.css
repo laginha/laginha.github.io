@@ -15,9 +15,9 @@
 }
 
 .tile {
-  transition:
-    left 0.4s,
-    top 0.4s;
+  left: 0;
+  top: 0;
+  transition: transform 0.4s;
   background-image: url('https://avatars.githubusercontent.com/u/25960');
   background-size: 24rem; /* to match h-96 and w-96 of puzzle size*/
   background-repeat: no-repeat;
@@ -29,40 +29,31 @@
 }
 
 .tile[data-index='0'] {
-  left: 0;
-  top: 0;
+  transform: translate(0, 0);
 }
 .tile[data-index='1'] {
-  left: 8rem;
-  top: 0;
+  transform: translate(8rem, 0);
 }
 .tile[data-index='2'] {
-  left: 16rem;
-  top: 0;
+  transform: translate(16rem, 0);
 }
 .tile[data-index='3'] {
-  left: 0;
-  top: 8rem;
+  transform: translate(0, 8rem);
 }
 .tile[data-index='4'] {
-  left: 8rem;
-  top: 8rem;
+  transform: translate(8rem, 8rem);
 }
 .tile[data-index='5'] {
-  left: 16rem;
-  top: 8rem;
+  transform: translate(16rem, 8rem);
 }
 .tile[data-index='6'] {
-  left: 0;
-  top: 16rem;
+  transform: translate(0, 16rem);
 }
 .tile[data-index='7'] {
-  left: 8rem;
-  top: 16rem;
+  transform: translate(8rem, 16rem);
 }
 .tile[data-index='8'] {
-  left: 16rem;
-  top: 16rem;
+  transform: translate(16rem, 16rem);
 }
 
 .empty[data-index='0'] {
