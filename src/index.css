@@ -10,13 +10,14 @@
 }
 
 :root {
-  /* Tiles per row/column. Keep in sync with GRID_SIZE in utils/constants.ts */
-  --grid: 3;
   --tile: min(8rem, 30vw);
-  --puzzle: calc(var(--tile) * var(--grid));
 }
 
 @layer components {
+  /* --grid (tiles per row/column) is set inline by Puzzle from GRID_SIZE */
+  .puzzle {
+    --puzzle: calc(var(--tile) * var(--grid));
+  }
   .tile {
     left: 0;
     top: 0;

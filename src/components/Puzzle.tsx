@@ -8,7 +8,11 @@ import {
 
 import Tile from '@/components/Tile'
 import { cn } from '@/utils/cn'
-import { EMPTY_TILE_POSITION, ORDERED_POSITIONS } from '@/utils/constants'
+import {
+  EMPTY_TILE_POSITION,
+  GRID_SIZE,
+  ORDERED_POSITIONS
+} from '@/utils/constants'
 import {
   pictureVariables,
   shuffle,
@@ -56,8 +60,10 @@ function Puzzle({
       aria-label="Sliding puzzle"
       aria-describedby={instructionsId}
       onKeyDown={slideWithArrowKey}
-      className={cn('relative size-(--puzzle)', className)}
-      style={{ ...iconVariables, ...style }}
+      className={cn('puzzle relative size-(--puzzle)', className)}
+      style={
+        { '--grid': GRID_SIZE, ...iconVariables, ...style } as CSSProperties
+      }
       {...props}
     >
       {ORDERED_POSITIONS.map((position, index) => (

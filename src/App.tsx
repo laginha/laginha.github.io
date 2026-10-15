@@ -16,7 +16,7 @@ function App() {
   const topic = TOPIC_LIST[tilePosition ?? 0]
 
   return (
-    <div className="flex flex-col gap-6 items-center mx-auto w-(--puzzle)">
+    <div className="flex flex-col gap-6 items-center mx-auto w-min">
       <p className="text-left text-gray-600">
         Move the tiles (click them or use the arrow keys) until the picture is
         positioned correctly and click on the empty square to find more about me

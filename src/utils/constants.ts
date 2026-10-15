@@ -1,4 +1,5 @@
-// Tiles per row/column. Keep in sync with --grid in index.css
-export const GRID_SIZE = 3
+import TOPIC_LIST from '@/components/topic-list'
+
+export const GRID_SIZE = Math.sqrt(TOPIC_LIST.length)
 export const EMPTY_TILE_POSITION = 0
 export const ORDERED_POSITIONS = [...Array(GRID_SIZE ** 2).keys()]
