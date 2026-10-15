@@ -4,10 +4,6 @@
 
 @layer base {
   body {
-    font-family:
-      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -20,30 +16,31 @@
   --puzzle: calc(var(--tile) * var(--grid));
 }
 
-.tile {
-  left: 0;
-  top: 0;
-  transform: translate(
-    calc(var(--col) * var(--tile)),
-    calc(var(--row) * var(--tile))
-  );
-  background-image: url('https://avatars.githubusercontent.com/u/25960');
-  background-size: var(--puzzle);
-  /* With background-size equal to the puzzle, 0%..100% spans the grid's first
-     to last column, so each step is 100% / (grid - 1) */
-  background-position:
-    calc(var(--pos-col) * 100% / (var(--grid) - 1))
-    calc(var(--pos-row) * 100% / (var(--grid) - 1));
-  background-repeat: no-repeat;
-}
-@media (prefers-reduced-motion: no-preference) {
+@layer components {
   .tile {
-    transition: transform 0.4s;
+    left: 0;
+    top: 0;
+    transform: translate(
+      calc(var(--col) * var(--tile)),
+      calc(var(--row) * var(--tile))
+    );
+    background-image: url('https://avatars.githubusercontent.com/u/25960');
+    background-size: var(--puzzle);
+    /* With background-size equal to the puzzle, 0%..100% spans the grid's first
+     to last column, so each step is 100% / (grid - 1) */
+    background-position: calc(var(--pos-col) * 100% / (var(--grid) - 1))
+      calc(var(--pos-row) * 100% / (var(--grid) - 1));
+    background-repeat: no-repeat;
   }
-}
-.empty {
-  transition: background-image 0.2s;
-  background-image: var(--icon);
-  background-position: center;
-  background-size: calc(var(--tile) - 0.1rem);
+  @media (prefers-reduced-motion: no-preference) {
+    .tile {
+      transition: transform 0.4s;
+    }
+  }
+  .empty {
+    transition: background-image 0.2s;
+    background-image: var(--icon);
+    background-position: center;
+    background-size: calc(var(--tile) - 0.1rem);
+  }
 }

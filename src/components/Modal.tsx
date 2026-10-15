@@ -26,8 +26,10 @@ function Modal({ isOpen, onClose, title, children }: ModalProps) {
     else if (!isOpen && dialog.open) dialog.close()
   }, [isOpen])
 
+  const close = () => dialogRef.current?.close()
+
   const handleBackdropClick = (event: MouseEvent<HTMLDialogElement>) => {
-    if (event.target === event.currentTarget) onClose()
+    if (event.target === event.currentTarget) close()
   }
 
   return (
@@ -39,16 +41,15 @@ function Modal({ isOpen, onClose, title, children }: ModalProps) {
       className="m-auto bg-white rounded-xl max-w-5xl w-full max-h-[90vh] backdrop:bg-black/50 backdrop:backdrop-blur-sm"
     >
       <div className="p-8">
-        <div className="flex justify-between items-center mb-4">
-          <div className="w-5 h-5" aria-hidden="true"></div>
-          <h2 id={titleId} className="text-2xl font-semibold">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center mb-4">
+          <h2 id={titleId} className="col-start-2 text-2xl font-semibold">
             {title}
           </h2>
           <button
             type="button"
             aria-label="Close"
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 cursor-pointer"
+            onClick={close}
+            className="justify-self-end text-gray-500 hover:text-gray-700 cursor-pointer"
           >
             <CloseIcon className="w-5 h-5" aria-hidden="true" />
           </button>

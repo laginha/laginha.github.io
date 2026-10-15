@@ -12,6 +12,7 @@ const ICONS = TOPIC_LIST.map((topic) => topic.icon)
 function App() {
   const [tilePosition, setTilePosition] = useState<null | number>(null)
   const closeModal = useCallback(() => setTilePosition(null), [])
+
   const topic = TOPIC_LIST[tilePosition ?? 0]
 
   return (
@@ -28,9 +29,9 @@ function App() {
       <Modal
         isOpen={tilePosition !== null}
         onClose={closeModal}
-        title={topic.title}
+        title={topic?.title ?? ''}
       >
-        {topic.content}
+        {topic?.content}
       </Modal>
     </div>
   )

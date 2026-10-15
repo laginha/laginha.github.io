@@ -2,6 +2,7 @@ import babelParser from '@babel/eslint-parser'
 import js from '@eslint/js'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import importPlugin from 'eslint-plugin-import'
+import jsxA11y from 'eslint-plugin-jsx-a11y'
 import react from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
@@ -17,7 +18,8 @@ export default defineConfig([
       js.configs.recommended,
       react.configs.flat.recommended,
       react.configs.flat['jsx-runtime'],
-      reactHooks.configs.flat.recommended
+      reactHooks.configs.flat.recommended,
+      jsxA11y.flatConfigs.recommended
     ],
     languageOptions: {
       parser: babelParser,
@@ -67,6 +69,15 @@ export default defineConfig([
       'simple-import-sort/exports': 'error',
       'import/first': 'error',
       'import/newline-after-import': 'error'
+    }
+  },
+  {
+    // The dialog's backdrop click has Escape as its keyboard equivalent, and the
+    // puzzle delegates arrow keys from its tile buttons to the group
+    files: ['src/components/Modal.tsx', 'src/components/Puzzle.tsx'],
+    rules: {
+      'jsx-a11y/click-events-have-key-events': 'off',
+      'jsx-a11y/no-noninteractive-element-interactions': 'off'
     }
   },
   {

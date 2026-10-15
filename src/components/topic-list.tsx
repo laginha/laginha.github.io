@@ -30,16 +30,16 @@ function Topic({ tags, children, className, ...props }: TopicProps) {
 }
 
 interface ProjectProps {
-  role: string
+  jobTitle: string
   href: string
   children: ReactNode
 }
 
-function Project({ role, href, children }: ProjectProps) {
+function Project({ jobTitle, href, children }: ProjectProps) {
   return (
     <ListItem>
       <p>
-        {role} at <Link href={href}>{href}</Link>
+        {jobTitle} at <Link href={href}>{href}</Link>
       </p>
       <p className="text-sm text-gray-600">{children}</p>
     </ListItem>
@@ -211,15 +211,15 @@ const TOPIC_LIST: TopicItem[] = [
           into technical roadmaps.
         </p>
         <ul>
-          <Project role="Tech lead" href="https://wageforwork.com">
+          <Project jobTitle="Tech lead" href="https://wageforwork.com">
             rethink the user experience and improve the overall code quality and
             robustness
           </Project>
-          <Project role="Tech lead" href="https://mishe.co/">
+          <Project jobTitle="Tech lead" href="https://mishe.co/">
             develop the product from scratch on top of coding best practices
           </Project>
           <Project
-            role="Full-stack developer"
+            jobTitle="Full-stack developer"
             href="https://createacademy.com/"
           >
             re-build the application with special focus on scalability and

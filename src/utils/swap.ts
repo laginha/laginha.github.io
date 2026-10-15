@@ -141,10 +141,10 @@ export const shuffle = (): (() => void) => {
     )
     const randomIndex = possibilities[randomNumber(possibilities.length)]
     const tileToSwap = tiles.find(
-      (tile) => tile.dataset.index === randomIndex.toString()
+      (tile) => tile.dataset.index === String(randomIndex)
     )
 
-    if (tileToSwap) {
+    if (tileToSwap && randomIndex !== undefined) {
       previousEmpty = indexOfEmpty
       moveTile(empty, randomIndex)
       moveTile(tileToSwap, indexOfEmpty)
