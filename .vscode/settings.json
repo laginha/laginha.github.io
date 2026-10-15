@@ -15,7 +15,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.requireConfig": true,
-  "prettier.configPath": ".prettierrc",
+  "prettier.configPath": ".prettierrc.json",
   "prettier.useEditorConfig": false,
   "files.associations": {
     "*.css": "tailwindcss"
