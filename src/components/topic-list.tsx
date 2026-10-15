@@ -237,7 +237,7 @@ const TOPIC_LIST: TopicItem[] = [
           Cursor, powered by ChatGPT and Anthropic models, has significantly
           transformed my development workflow.
         </p>
-        <div>
+        <ul>
           <ListItem>Set up development environments.</ListItem>
           <ListItem>Improve code quality and robustness.</ListItem>
           <ListItem>Write useful documentation.</ListItem>
@@ -246,7 +246,7 @@ const TOPIC_LIST: TopicItem[] = [
           <ListItem>
             Gain insights into different approaches to challenging problems.
           </ListItem>
-        </div>
+        </ul>
         <p>
           I'm committed to continuing to leverage AI to enhance productivity and
           streamline tasks — hoping one day to be fully emancipated.

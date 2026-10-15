@@ -13,7 +13,7 @@ export default defineConfig({
   },
   build: {
     outDir: 'build',
-    rollupOptions: {
+    rolldownOptions: {
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         cv: fileURLToPath(new URL('./cv.html', import.meta.url))
