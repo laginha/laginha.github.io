@@ -39,7 +39,7 @@ function Project({ role, href, children }: ProjectProps) {
   return (
     <ListItem>
       <p>
-        {role} at <Link href={href} />
+        {role} at <Link href={href}>{href}</Link>
       </p>
       <p className="text-sm text-gray-600">{children}</p>
     </ListItem>

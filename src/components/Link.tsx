@@ -1,9 +1,11 @@
 import type { ComponentProps } from 'react'
 
-function Link(props: ComponentProps<'a'>) {
+import { cn } from '@/utils/cn'
+
+function Link({ className, ...props }: ComponentProps<'a'>) {
   return (
     <a
-      className="text-blue-500 hover:text-blue-700"
+      className={cn('text-blue-500 hover:text-blue-700', className)}
       target="_blank"
       rel="noreferrer"
       {...props}
