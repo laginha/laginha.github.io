@@ -21,16 +21,15 @@ const possibleMoves = (index: number): Tiles => {
   return [left, right, top, bottom].filter((i) => i >= 0 && i < 9) as Tiles
 }
 
-const getEmptyElement = (): [HTMLDivElement, TilePosition] => {
-  const empty = document.querySelector('.empty') as HTMLDivElement
+const getEmptyElement = (): [HTMLButtonElement, TilePosition] => {
+  const empty = document.querySelector('.empty') as HTMLButtonElement
   if (!empty.dataset.index) {
     throw Error('Empty tile not found')
   }
   return [empty, parseInt(empty.dataset.index) as TilePosition]
 }
 
-export const swapTiles = (e: MouseEvent<HTMLDivElement>) => {
-  e.preventDefault()
+export const swapTiles = (e: MouseEvent<HTMLButtonElement>) => {
   const [empty, indexOfEmpty] = getEmptyElement()
   const possibilities = possibleMoves(indexOfEmpty)
 
@@ -52,7 +51,7 @@ export const shuffle = () => {
     const randomIndex = possibilities[randomNumber(possibilities.length)]
     const tileToSwap = document.querySelector(
       `[data-index="${randomIndex}"]`
-    ) as HTMLDivElement
+    ) as HTMLButtonElement
 
     if (tileToSwap) {
       previousEmpty = indexOfEmpty

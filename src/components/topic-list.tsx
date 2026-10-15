@@ -9,11 +9,13 @@ interface TopicProps extends ComponentProps<'div'> {
 
 function Topic({ tags, children, className, ...props }: TopicProps) {
   return (
-    <div className={cn("flex flex-col gap-4 text-left",className)} {...props}>
+    <div className={cn('flex flex-col gap-4 text-left', className)} {...props}>
       {children}
-      <p className="text-blue-400 flex items-center justify-end">
-        {tags.map((each) => ` #${each}`)}
-      </p>
+      <ul className="text-blue-400 flex flex-wrap gap-x-2 justify-end">
+        {tags.map((tag) => (
+          <li key={tag}>#{tag}</li>
+        ))}
+      </ul>
     </div>
   )
 }

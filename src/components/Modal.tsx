@@ -2,7 +2,10 @@ import {
   type ComponentProps,
   type MouseEvent,
   type ReactNode,
-  useEffect} from 'react'
+  useEffect,
+  useId,
+  useRef
+} from 'react'
 
 interface ModalProps {
   isOpen: boolean
@@ -12,42 +15,47 @@ interface ModalProps {
 }
 
 function Modal({ isOpen, onClose, title, children }: ModalProps) {
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const titleId = useId()
+
   useEffect(() => {
-    if (!isOpen || !onClose) return
+    const dialog = dialogRef.current
+    if (!dialog) return
 
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose()
-    }
+    if (isOpen && !dialog.open) dialog.showModal()
+    else if (!isOpen && dialog.open) dialog.close()
+  }, [isOpen])
 
-    window.addEventListener('keydown', handleEscape)
-    return () => window.removeEventListener('keydown', handleEscape)
-  }, [onClose, isOpen])
-
-  if (!isOpen || !onClose) return null
-
-  const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
+  const handleBackdropClick = (event: MouseEvent<HTMLDialogElement>) => {
     if (event.target === event.currentTarget) onClose()
   }
 
   return (
-    <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm"
+    <dialog
+      ref={dialogRef}
+      aria-labelledby={titleId}
+      onClose={onClose}
       onClick={handleBackdropClick}
+      className="m-auto bg-white rounded-xl max-w-5xl w-full max-h-[90vh] backdrop:bg-black/50 backdrop:backdrop-blur-sm"
     >
-      <div className="bg-white rounded-xl p-8 max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="p-8">
         <div className="flex justify-between items-center mb-4">
-          <div className="w-5 h-5"></div>
-          <h2 className="text-2xl font-semibold">{title}</h2>
+          <div className="w-5 h-5" aria-hidden="true"></div>
+          <h2 id={titleId} className="text-2xl font-semibold">
+            {title}
+          </h2>
           <button
+            type="button"
+            aria-label="Close"
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 cursor-pointer"
           >
-            <CloseIcon className="w-5 h-5" />
+            <CloseIcon className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
         {children}
       </div>
-    </div>
+    </dialog>
   )
 }
 

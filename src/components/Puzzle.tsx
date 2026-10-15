@@ -17,8 +17,7 @@ interface PuzzleProps extends ComponentProps<'div'> {
 }
 
 function Puzzle({ onEmpty, className, ...props }: PuzzleProps) {
-  const onEmptyClick = (e: MouseEvent<HTMLDivElement>) => {
-    e.preventDefault()
+  const onEmptyClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { index } = e.currentTarget.dataset
     if (index && onEmpty) {
       onEmpty(parseInt(index) as TilePosition)
@@ -31,6 +30,8 @@ function Puzzle({ onEmpty, className, ...props }: PuzzleProps) {
 
   return (
     <div
+      role="group"
+      aria-label="Sliding puzzle"
       className={cn('relative', PUZZLE_SIZE_CLASSES[PUZZLE_SIZE], className)}
       {...props}
     >
@@ -41,6 +42,11 @@ function Puzzle({ onEmpty, className, ...props }: PuzzleProps) {
           data-index={index}
           className={TILE_SIZE_CLASSES[(PUZZLE_SIZE / 3) as TileSize]}
           isEmpty={position === EMPTY_TILE_POSITION}
+          aria-label={
+            position === EMPTY_TILE_POSITION
+              ? 'Learn more about me'
+              : `Move piece ${position}`
+          }
           onClick={position === EMPTY_TILE_POSITION ? onEmptyClick : swapTiles}
         />
       ))}
