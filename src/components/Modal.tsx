@@ -31,16 +31,16 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur"
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm"
       onClick={handleBackdropClick}
     >
       <div className="bg-white rounded-xl p-8 max-w-5xl w-full max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
           <div className="w-5 h-5"></div>
-          <h2 className="text-2xl font-semibold text-secondary-700">{title}</h2>
+          <h2 className="text-2xl font-semibold">{title}</h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
+            className="text-gray-500 hover:text-gray-700 cursor-pointer"
           >
             <CloseIcon className="w-5 h-5" />
           </button>

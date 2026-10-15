@@ -6,6 +6,7 @@ import {
   ORDERED_POSITIONS,
   EMPTY_TILE_POSITION,
   PUZZLE_SIZE,
+  PUZZLE_SIZE_CLASSES,
 } from '@/utils/constants'
 
 interface PuzzleProps {
@@ -26,7 +27,7 @@ const Puzzle = ({ onEmpty }: PuzzleProps) => {
   }, [])
 
   return (
-    <div className={`relative h-${PUZZLE_SIZE} w-${PUZZLE_SIZE}`}>
+    <div className={`relative ${PUZZLE_SIZE_CLASSES[PUZZLE_SIZE]}`}>
       {ORDERED_POSITIONS.map((position: number, index: number) => (
         <Tile
           key={position}
