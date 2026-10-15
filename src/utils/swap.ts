@@ -5,19 +5,13 @@ import { EMPTY_TILE_POSITION, GRID_SIZE } from './constants'
 const randomNumber = (max: number): number => Math.floor(Math.random() * max)
 
 const possibleMoves = (index: number): number[] => {
-  const top = index - GRID_SIZE
-  const bottom = index + GRID_SIZE
-  let left = index - 1
-  let right = index + 1
-
-  if ((index % GRID_SIZE) - (left % GRID_SIZE) < 1) {
-    left = -1
-  }
-  if ((right % GRID_SIZE) - (index % GRID_SIZE) < 1) {
-    right = -1
-  }
-
-  return [left, right, top, bottom].filter((i) => i >= 0 && i < GRID_SIZE ** 2)
+  const col = index % GRID_SIZE
+  return [
+    col > 0 ? index - 1 : -1,
+    col < GRID_SIZE - 1 ? index + 1 : -1,
+    index - GRID_SIZE,
+    index + GRID_SIZE
+  ].filter((i) => i >= 0 && i < GRID_SIZE ** 2)
 }
 
 // CSS variables that place a tile in slot `index` (see .tile in index.css).
