@@ -1,17 +1,19 @@
 import { useCallback, useState } from 'react'
+
 import Button from '@/components/Button'
-import Puzzle from '@/components/Puzzle'
 import Modal from '@/components/Modal'
+import Puzzle from '@/components/Puzzle'
+import TOPICS from '@/components/topic-list'
+import { cn } from '@/utils/cn'
+import { PUZZLE_SIZE, PUZZLE_WIDTH_CLASSES } from '@/utils/constants'
 import { shuffle } from '@/utils/swap'
 import { TilePosition } from '@/utils/types'
-import { PUZZLE_SIZE, PUZZLE_WIDTH_CLASSES } from '@/utils/constants'
-import Topics from '@/components/Topics'
+
 import Link from './components/Link'
-import { cn } from '@/utils/cn'
 
 function App() {
-  const [showModal, setShowModal] = useState<null | TilePosition>(null)
-  const closeModal = useCallback(() => setShowModal(null), [])
+  const [tilePosition, setTilePosition] = useState<null | TilePosition>(null)
+  const closeModal = useCallback(() => setTilePosition(null), [])
 
   return (
     <div
@@ -25,14 +27,14 @@ function App() {
         the empty square to find more about me or simply go to my{' '}
         <Link href="/cv.html">CV</Link>
       </p>
-      <Puzzle onEmpty={setShowModal} />
+      <Puzzle onEmpty={setTilePosition} />
       <Button className="w-full" onClick={shuffle}>
         reshuffle
       </Button>
       <Modal
-        isOpen={showModal !== null}
+        isOpen={tilePosition !== null}
         onClose={closeModal}
-        {...Topics[showModal ?? 0]}
+        {...TOPICS[tilePosition ?? 0]}
       />
     </div>
   )

@@ -1,16 +1,16 @@
-import { type MouseEvent, type ComponentProps, useEffect } from 'react'
+import { type ComponentProps, type MouseEvent, useEffect } from 'react'
+
 import Tile from '@/components/Tile'
-import { TilePosition, TileSize } from '@/utils/types'
-import { shuffle, swapTiles } from '@/utils/swap'
+import { cn } from '@/utils/cn'
 import {
-  ORDERED_POSITIONS,
   EMPTY_TILE_POSITION,
+  ORDERED_POSITIONS,
   PUZZLE_SIZE,
   PUZZLE_SIZE_CLASSES,
   TILE_SIZE_CLASSES
 } from '@/utils/constants'
-
-import { cn } from '@/utils/cn'
+import { shuffle, swapTiles } from '@/utils/swap'
+import type { TilePosition, TileSize } from '@/utils/types'
 
 interface PuzzleProps extends ComponentProps<'div'> {
   onEmpty?: (index: TilePosition) => void

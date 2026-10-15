@@ -1,13 +1,15 @@
 import type { ComponentProps, ReactNode } from 'react'
+
 import Link from '@/components/Link'
+import { cn } from '@/utils/cn'
 
 interface TopicProps extends ComponentProps<'div'> {
   tags: string[]
 }
 
-function Topic({ tags, children }: TopicProps) {
+function Topic({ tags, children, className, ...props }: TopicProps) {
   return (
-    <div className="flex flex-col gap-4 text-left">
+    <div className={cn("flex flex-col gap-4 text-left",className)} {...props}>
       {children}
       <p className="text-blue-400 flex items-center justify-end">
         {tags.map((each) => ` #${each}`)}
@@ -42,7 +44,7 @@ function ListItem({ children }: { children: ReactNode }) {
   )
 }
 
-const Topics: { title: string; children: ReactNode }[] = [
+const TOPICS: { title: string; children: ReactNode }[] = [
   // 0
   {
     title: 'Parenting',
@@ -155,7 +157,7 @@ const Topics: { title: string; children: ReactNode }[] = [
       </Topic>
     )
   },
-  // 7
+  // 6
   {
     title: 'Backend background',
     children: (
@@ -237,4 +239,4 @@ const Topics: { title: string; children: ReactNode }[] = [
   }
 ]
 
-export default Topics
+export default TOPICS

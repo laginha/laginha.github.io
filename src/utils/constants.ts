@@ -1,4 +1,4 @@
-import { TilePosition, Tiles, PuzzleSize, TileSize } from './types'
+import type { PuzzleSize, TilePosition, Tiles, TileSize } from './types'
 
 export const EMPTY_TILE_POSITION: TilePosition = 0
 export const ORDERED_POSITIONS = [...Array(9).keys()] as Tiles

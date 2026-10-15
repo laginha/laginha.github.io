@@ -1,6 +1,7 @@
-import { MouseEvent } from 'react'
+import type { MouseEvent } from 'react'
+
 import { EMPTY_TILE_POSITION } from './constants'
-import { TilePosition, Tiles } from './types'
+import type { TilePosition, Tiles } from './types'
 
 const randomNumber = (max: number): number => Math.floor(Math.random() * max)
 

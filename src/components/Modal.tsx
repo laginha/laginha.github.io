@@ -1,9 +1,8 @@
 import {
-  useEffect,
-  type ReactNode,
+  type ComponentProps,
   type MouseEvent,
-  type ComponentProps
-} from 'react'
+  type ReactNode,
+  useEffect} from 'react'
 
 interface ModalProps {
   isOpen: boolean
