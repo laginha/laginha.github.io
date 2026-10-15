@@ -6,12 +6,11 @@ import Modal from '@/components/Modal'
 import Puzzle from '@/components/Puzzle'
 import TOPIC_LIST from '@/components/topic-list'
 import { shuffle } from '@/utils/swap'
-import { TilePosition } from '@/utils/types'
 
 const ICONS = TOPIC_LIST.map((topic) => topic.icon)
 
 function App() {
-  const [tilePosition, setTilePosition] = useState<null | TilePosition>(null)
+  const [tilePosition, setTilePosition] = useState<null | number>(null)
   const closeModal = useCallback(() => setTilePosition(null), [])
   const topic = TOPIC_LIST[tilePosition ?? 0]
 

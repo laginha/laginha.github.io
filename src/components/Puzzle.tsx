@@ -14,11 +14,10 @@ import {
   swapTiles,
   tileVariables
 } from '@/utils/swap'
-import type { TilePosition } from '@/utils/types'
 
 interface PuzzleProps extends ComponentProps<'div'> {
   icons: string[]
-  onEmptyTileClick?: (index: TilePosition) => void
+  onEmptyTileClick?: (index: number) => void
 }
 
 function Puzzle({
@@ -40,7 +39,7 @@ function Puzzle({
   const onEmptyClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { index } = e.currentTarget.dataset
     if (index && onEmptyTileClick) {
-      onEmptyTileClick(Number(index) as TilePosition)
+      onEmptyTileClick(Number(index))
     }
   }
 

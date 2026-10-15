@@ -15,8 +15,10 @@
 }
 
 :root {
+  /* Tiles per row/column. Keep in sync with GRID_SIZE in utils/constants.ts */
+  --grid: 3;
   --tile: min(8rem, 30vw);
-  --puzzle: calc(var(--tile) * 3);
+  --puzzle: calc(var(--tile) * var(--grid));
 }
 
 .tile {
@@ -28,7 +30,11 @@
   );
   background-image: url('https://avatars.githubusercontent.com/u/25960');
   background-size: var(--puzzle);
-  background-position: calc(var(--pos-col) * 50%) calc(var(--pos-row) * 50%);
+  /* With background-size equal to the puzzle, 0%..100% spans the grid's first
+     to last column, so each step is 100% / (grid - 1) */
+  background-position:
+    calc(var(--pos-col) * 100% / (var(--grid) - 1))
+    calc(var(--pos-row) * 100% / (var(--grid) - 1));
   background-repeat: no-repeat;
 }
 @media (prefers-reduced-motion: no-preference) {

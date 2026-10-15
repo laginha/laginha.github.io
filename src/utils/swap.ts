@@ -1,38 +1,37 @@
 import type { MouseEvent } from 'react'
 
-import { EMPTY_TILE_POSITION } from './constants'
-import type { TilePosition, Tiles } from './types'
+import { EMPTY_TILE_POSITION, GRID_SIZE } from './constants'
 
 const randomNumber = (max: number): number => Math.floor(Math.random() * max)
 
-const possibleMoves = (index: number): Tiles => {
-  const top = index - 3
-  const bottom = index + 3
+const possibleMoves = (index: number): number[] => {
+  const top = index - GRID_SIZE
+  const bottom = index + GRID_SIZE
   let left = index - 1
   let right = index + 1
 
-  if ((index % 3) - (left % 3) < 1) {
+  if ((index % GRID_SIZE) - (left % GRID_SIZE) < 1) {
     left = -1
   }
-  if ((right % 3) - (index % 3) < 1) {
+  if ((right % GRID_SIZE) - (index % GRID_SIZE) < 1) {
     right = -1
   }
 
-  return [left, right, top, bottom].filter((i) => i >= 0 && i < 9) as Tiles
+  return [left, right, top, bottom].filter((i) => i >= 0 && i < GRID_SIZE ** 2)
 }
 
 // CSS variables that place a tile in slot `index` (see .tile in index.css).
 // The empty tile also shows the icon for its slot, read from --icon-N on the puzzle
 export const tileVariables = (index: number) => ({
-  '--col': String(index % 3),
-  '--row': String(Math.floor(index / 3)),
+  '--col': String(index % GRID_SIZE),
+  '--row': String(Math.floor(index / GRID_SIZE)),
   '--icon': `var(--icon-${index})`
 })
 
 // CSS variables that pick the slice of the picture a tile shows
-export const pictureVariables = (position: TilePosition) => ({
-  '--pos-col': String(position % 3),
-  '--pos-row': String(Math.floor(position / 3))
+export const pictureVariables = (position: number) => ({
+  '--pos-col': String(position % GRID_SIZE),
+  '--pos-row': String(Math.floor(position / GRID_SIZE))
 })
 
 const moveTile = (tile: HTMLButtonElement, index: number) => {
@@ -42,12 +41,12 @@ const moveTile = (tile: HTMLButtonElement, index: number) => {
   }
 }
 
-const getEmptyElement = (): [HTMLButtonElement, TilePosition] => {
-  const empty = document.querySelector('.empty') as HTMLButtonElement
-  if (!empty.dataset.index) {
+const getEmptyElement = (): [HTMLButtonElement, number] => {
+  const empty = document.querySelector<HTMLButtonElement>('.empty')
+  if (!empty?.dataset.index) {
     throw Error('Empty tile not found')
   }
-  return [empty, Number(empty.dataset.index) as TilePosition]
+  return [empty, Number(empty.dataset.index)]
 }
 
 export const swapTiles = (e: MouseEvent<HTMLButtonElement>) => {
@@ -55,7 +54,7 @@ export const swapTiles = (e: MouseEvent<HTMLButtonElement>) => {
   const possibilities = possibleMoves(indexOfEmpty)
 
   const indexOfTile = Number(e.currentTarget.dataset.index as string)
-  if (possibilities.includes(indexOfTile as TilePosition)) {
+  if (possibilities.includes(indexOfTile)) {
     moveTile(empty, indexOfTile)
     moveTile(e.currentTarget, indexOfEmpty)
   }
@@ -73,7 +72,7 @@ export const shuffle = (): (() => void) => {
   const tiles = Array.from(
     document.querySelectorAll<HTMLButtonElement>('[data-index]')
   )
-  let previousEmpty: TilePosition = EMPTY_TILE_POSITION
+  let previousEmpty = EMPTY_TILE_POSITION
   let movesLeft = SHUFFLE_MOVES
 
   const intervalId = setInterval(() => {
