@@ -10,10 +10,12 @@ import { shuffle } from '@/utils/swap'
 const ICONS = TOPIC_LIST.map((topic) => topic.icon)
 
 function App() {
-  const [tilePosition, setTilePosition] = useState<null | number>(null)
-  const closeModal = useCallback(() => setTilePosition(null), [])
+  // The topic shown is the one for the empty tile's current slot when it was
+  // clicked
+  const [selectedTopic, setSelectedTopic] = useState<null | number>(null)
+  const closeModal = useCallback(() => setSelectedTopic(null), [])
 
-  const topic = TOPIC_LIST[tilePosition ?? 0]
+  const topic = TOPIC_LIST[selectedTopic ?? 0]
 
   return (
     <div className="flex flex-col gap-6 items-center mx-auto w-min">
@@ -22,12 +24,12 @@ function App() {
         positioned correctly and click on the empty square to find more about me
         or simply go to my <Link href="/cv.html">CV</Link>
       </p>
-      <Puzzle icons={ICONS} onEmptyTileClick={setTilePosition} />
+      <Puzzle icons={ICONS} onEmptyTileClick={setSelectedTopic} />
       <Button className="w-full" onClick={shuffle}>
         reshuffle
       </Button>
       <Modal
-        isOpen={tilePosition !== null}
+        isOpen={selectedTopic !== null}
         onClose={closeModal}
         title={topic?.title ?? ''}
       >

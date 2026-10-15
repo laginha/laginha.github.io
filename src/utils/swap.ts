@@ -1,50 +1,54 @@
 import type { KeyboardEvent, MouseEvent } from 'react'
 
-import { EMPTY_TILE_POSITION, GRID_SIZE } from './constants'
+import { EMPTY_TILE_HOME_SLOT, GRID_SIZE } from './constants'
 
 const randomNumber = (max: number): number => Math.floor(Math.random() * max)
 
-const possibleMoves = (index: number): number[] => {
-  const col = index % GRID_SIZE
+const possibleMoves = (slot: number): number[] => {
+  const col = slot % GRID_SIZE
   return [
-    col > 0 ? index - 1 : -1,
-    col < GRID_SIZE - 1 ? index + 1 : -1,
-    index - GRID_SIZE,
-    index + GRID_SIZE
-  ].filter((i) => i >= 0 && i < GRID_SIZE ** 2)
+    col > 0 ? slot - 1 : -1,
+    col < GRID_SIZE - 1 ? slot + 1 : -1,
+    slot - GRID_SIZE,
+    slot + GRID_SIZE
+  ].filter((s) => s >= 0 && s < GRID_SIZE ** 2)
 }
 
-// CSS variables that place a tile in slot `index` (see .tile in index.css).
+// A tile's home slot is where it belongs in the solved picture and never
+// changes; its current slot is where it is now. Both count left to right,
+// top to bottom
+
+// CSS variables that place a tile in `currentSlot` (see .tile in index.css).
 // The empty tile also shows the icon for its slot, read from --icon-N on the puzzle
-export const tileVariables = (index: number) => ({
-  '--col': String(index % GRID_SIZE),
-  '--row': String(Math.floor(index / GRID_SIZE)),
-  '--icon': `var(--icon-${index})`
+export const tileVariables = (currentSlot: number) => ({
+  '--col': String(currentSlot % GRID_SIZE),
+  '--row': String(Math.floor(currentSlot / GRID_SIZE)),
+  '--icon': `var(--icon-${currentSlot})`
 })
 
 // CSS variables that pick the slice of the picture a tile shows
-export const pictureVariables = (position: number) => ({
-  '--pos-col': String(position % GRID_SIZE),
-  '--pos-row': String(Math.floor(position / GRID_SIZE))
+export const pictureVariables = (homeSlot: number) => ({
+  '--home-col': String(homeSlot % GRID_SIZE),
+  '--home-row': String(Math.floor(homeSlot / GRID_SIZE))
 })
 
-const describeSlot = (index: number) =>
-  `row ${Math.floor(index / GRID_SIZE) + 1}, column ${(index % GRID_SIZE) + 1}`
+const describeSlot = (slot: number) =>
+  `row ${Math.floor(slot / GRID_SIZE) + 1}, column ${(slot % GRID_SIZE) + 1}`
 
-// Pieces are numbered by their slot in the solved picture, so the label tells
-// a screen reader user both where a piece is and where it belongs
-export const tileLabel = (position: number, index: number) =>
-  position === EMPTY_TILE_POSITION
-    ? `Learn more about me (empty slot at ${describeSlot(index)})`
-    : `Piece ${position} at ${describeSlot(index)}`
+// Pieces are numbered by their home slot, so the label tells a screen reader
+// user both where a piece is and where it belongs
+export const tileLabel = (homeSlot: number, currentSlot: number) =>
+  homeSlot === EMPTY_TILE_HOME_SLOT
+    ? `Learn more about me (empty slot at ${describeSlot(currentSlot)})`
+    : `Piece ${homeSlot} at ${describeSlot(currentSlot)}`
 
-const moveTile = (tile: HTMLButtonElement, index: number) => {
-  tile.dataset.index = index.toString()
+const moveTile = (tile: HTMLButtonElement, currentSlot: number) => {
+  tile.dataset.currentSlot = currentSlot.toString()
   tile.setAttribute(
     'aria-label',
-    tileLabel(Number(tile.dataset.position), index)
+    tileLabel(Number(tile.dataset.homeSlot), currentSlot)
   )
-  for (const [name, value] of Object.entries(tileVariables(index))) {
+  for (const [name, value] of Object.entries(tileVariables(currentSlot))) {
     tile.style.setProperty(name, value)
   }
 }
@@ -58,28 +62,28 @@ const announce = (message: string) => {
 
 const isSolved = () =>
   Array.from(
-    document.querySelectorAll<HTMLButtonElement>('[data-index]')
-  ).every((tile) => tile.dataset.index === tile.dataset.position)
+    document.querySelectorAll<HTMLButtonElement>('[data-current-slot]')
+  ).every((tile) => tile.dataset.currentSlot === tile.dataset.homeSlot)
 
 const getEmptyElement = (): [HTMLButtonElement, number] => {
   const empty = document.querySelector<HTMLButtonElement>('.empty')
-  if (!empty?.dataset.index) {
+  if (!empty?.dataset.currentSlot) {
     throw Error('Empty tile not found')
   }
-  return [empty, Number(empty.dataset.index)]
+  return [empty, Number(empty.dataset.currentSlot)]
 }
 
 const slideIntoEmpty = (tile: HTMLButtonElement) => {
-  const [empty, indexOfEmpty] = getEmptyElement()
-  const indexOfTile = Number(tile.dataset.index)
-  if (!possibleMoves(indexOfEmpty).includes(indexOfTile)) {
+  const [empty, emptySlot] = getEmptyElement()
+  const tileSlot = Number(tile.dataset.currentSlot)
+  if (!possibleMoves(emptySlot).includes(tileSlot)) {
     return
   }
 
-  moveTile(empty, indexOfTile)
-  moveTile(tile, indexOfEmpty)
+  moveTile(empty, tileSlot)
+  moveTile(tile, emptySlot)
   announce(
-    `Piece ${tile.dataset.position} moved to ${describeSlot(indexOfEmpty)}` +
+    `Piece ${tile.dataset.homeSlot} moved to ${describeSlot(emptySlot)}` +
       (isSolved() ? '. Puzzle solved!' : '')
   )
 }
@@ -104,15 +108,15 @@ export const slideWithArrowKey = (e: KeyboardEvent<HTMLElement>) => {
   }
   e.preventDefault()
 
-  const [, indexOfEmpty] = getEmptyElement()
-  const row = Math.floor(indexOfEmpty / GRID_SIZE) + offset[0]
-  const col = (indexOfEmpty % GRID_SIZE) + offset[1]
+  const [, emptySlot] = getEmptyElement()
+  const row = Math.floor(emptySlot / GRID_SIZE) + offset[0]
+  const col = (emptySlot % GRID_SIZE) + offset[1]
   if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE) {
     return
   }
 
   const tile = e.currentTarget.querySelector<HTMLButtonElement>(
-    `[data-index="${row * GRID_SIZE + col}"]`
+    `[data-current-slot="${row * GRID_SIZE + col}"]`
   )
   if (tile) {
     slideIntoEmpty(tile)
@@ -129,25 +133,26 @@ export const shuffle = (): (() => void) => {
   stopActiveShuffle?.()
 
   const tiles = Array.from(
-    document.querySelectorAll<HTMLButtonElement>('[data-index]')
+    document.querySelectorAll<HTMLButtonElement>('[data-current-slot]')
   )
-  let previousEmpty = EMPTY_TILE_POSITION
+  // Don't undo the previous move
+  let previousEmptySlot: number | undefined
   let movesLeft = SHUFFLE_MOVES
 
   const intervalId = setInterval(() => {
-    const [empty, indexOfEmpty] = getEmptyElement()
-    const possibilities = possibleMoves(indexOfEmpty).filter(
-      (i) => i !== previousEmpty
+    const [empty, emptySlot] = getEmptyElement()
+    const possibilities = possibleMoves(emptySlot).filter(
+      (s) => s !== previousEmptySlot
     )
-    const randomIndex = possibilities[randomNumber(possibilities.length)]
+    const randomSlot = possibilities[randomNumber(possibilities.length)]
     const tileToSwap = tiles.find(
-      (tile) => tile.dataset.index === String(randomIndex)
+      (tile) => tile.dataset.currentSlot === String(randomSlot)
     )
 
-    if (tileToSwap && randomIndex !== undefined) {
-      previousEmpty = indexOfEmpty
-      moveTile(empty, randomIndex)
-      moveTile(tileToSwap, indexOfEmpty)
+    if (tileToSwap && randomSlot !== undefined) {
+      previousEmptySlot = emptySlot
+      moveTile(empty, randomSlot)
+      moveTile(tileToSwap, emptySlot)
     }
 
     if (--movesLeft === 0) {

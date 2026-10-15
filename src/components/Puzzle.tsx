@@ -8,11 +8,7 @@ import {
 
 import Tile from '@/components/Tile'
 import { cn } from '@/utils/cn'
-import {
-  EMPTY_TILE_POSITION,
-  GRID_SIZE,
-  ORDERED_POSITIONS
-} from '@/utils/constants'
+import { EMPTY_TILE_HOME_SLOT, GRID_SIZE, SLOTS } from '@/utils/constants'
 import {
   pictureVariables,
   shuffle,
@@ -24,7 +20,7 @@ import {
 
 interface PuzzleProps extends ComponentProps<'div'> {
   icons: string[]
-  onEmptyTileClick?: (index: number) => void
+  onEmptyTileClick?: (currentSlot: number) => void
 }
 
 function Puzzle({
@@ -44,9 +40,9 @@ function Puzzle({
   ) as CSSProperties
 
   const onEmptyClick = (e: MouseEvent<HTMLButtonElement>) => {
-    const { index } = e.currentTarget.dataset
-    if (index && onEmptyTileClick) {
-      onEmptyTileClick(Number(index))
+    const { currentSlot } = e.currentTarget.dataset
+    if (currentSlot && onEmptyTileClick) {
+      onEmptyTileClick(Number(currentSlot))
     }
   }
 
@@ -66,20 +62,21 @@ function Puzzle({
       }
       {...props}
     >
-      {ORDERED_POSITIONS.map((position, index) => (
+      {/* Tiles render in their home slots; shuffle() then moves them */}
+      {SLOTS.map((homeSlot) => (
         <Tile
-          key={position}
-          data-index={index}
-          data-position={position}
+          key={homeSlot}
+          data-current-slot={homeSlot}
+          data-home-slot={homeSlot}
           style={
             {
-              ...pictureVariables(position),
-              ...tileVariables(index)
+              ...pictureVariables(homeSlot),
+              ...tileVariables(homeSlot)
             } as CSSProperties
           }
-          isEmpty={position === EMPTY_TILE_POSITION}
-          aria-label={tileLabel(position, index)}
-          onClick={position === EMPTY_TILE_POSITION ? onEmptyClick : swapTiles}
+          isEmpty={homeSlot === EMPTY_TILE_HOME_SLOT}
+          aria-label={tileLabel(homeSlot, homeSlot)}
+          onClick={homeSlot === EMPTY_TILE_HOME_SLOT ? onEmptyClick : swapTiles}
         />
       ))}
       <p id={instructionsId} className="sr-only">
