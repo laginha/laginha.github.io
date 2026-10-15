@@ -1,4 +1,5 @@
 import babelParser from '@babel/eslint-parser'
+import js from '@eslint/js'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import importPlugin from 'eslint-plugin-import'
 import react from 'eslint-plugin-react'
@@ -12,7 +13,12 @@ export default defineConfig([
   globalIgnores(['build', 'node_modules']),
   {
     files: ['**/*.{js,jsx,mjs,ts,tsx,mts}'],
-    extends: [reactHooks.configs.flat.recommended],
+    extends: [
+      js.configs.recommended,
+      react.configs.flat.recommended,
+      react.configs.flat['jsx-runtime'],
+      reactHooks.configs.flat.recommended
+    ],
     languageOptions: {
       parser: babelParser,
       parserOptions: {
@@ -23,10 +29,9 @@ export default defineConfig([
           parserOpts: { plugins: ['jsx'] }
         }
       },
-      globals: { ...globals.browser, ...globals.node }
+      globals: globals.browser
     },
     plugins: {
-      react,
       'react-refresh': reactRefresh,
       'simple-import-sort': simpleImportSort,
       import: importPlugin
@@ -51,8 +56,9 @@ export default defineConfig([
       ],
       'react/jsx-boolean-value': ['error', 'never'],
       'react/jsx-no-useless-fragment': 'error',
+      'react/no-unescaped-entities': ['error', { forbid: ['>', '}'] }],
       'react-refresh/only-export-components': [
-        'off',
+        'warn',
         { allowConstantExport: true }
       ],
 
@@ -61,6 +67,19 @@ export default defineConfig([
       'simple-import-sort/exports': 'error',
       'import/first': 'error',
       'import/newline-after-import': 'error'
+    }
+  },
+  {
+    files: ['*.config.{js,mjs,ts,mts}'],
+    languageOptions: { globals: globals.node }
+  },
+  {
+    // Babel's scope analysis doesn't see TS types, so these misfire on type
+    // names and props; tsc covers them via noUnusedLocals/noUnusedParameters
+    files: ['**/*.{ts,tsx,mts}'],
+    rules: {
+      'no-undef': 'off',
+      'no-unused-vars': 'off'
     }
   },
   {
