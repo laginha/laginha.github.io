@@ -7,6 +7,7 @@ import { TilePosition } from '@/utils/types'
 import { PUZZLE_SIZE, PUZZLE_WIDTH_CLASSES } from '@/utils/constants'
 import Topics from '@/components/Topics'
 import Link from './components/Link'
+import { cn } from '@/utils/cn'
 
 function App() {
   const [showModal, setShowModal] = useState<null | TilePosition>(null)
@@ -14,7 +15,10 @@ function App() {
 
   return (
     <div
-      className={`flex flex-col gap-6 items-center mx-auto ${PUZZLE_WIDTH_CLASSES[PUZZLE_SIZE]}`}
+      className={cn(
+        'flex flex-col gap-6 items-center mx-auto',
+        PUZZLE_WIDTH_CLASSES[PUZZLE_SIZE],
+      )}
     >
       <p className="text-left text-gray-600">
         Move the tiles until the picture is positioned correctly and click on

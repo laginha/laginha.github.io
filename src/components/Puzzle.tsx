@@ -8,6 +8,7 @@ import {
   PUZZLE_SIZE,
   PUZZLE_SIZE_CLASSES,
 } from '@/utils/constants'
+import { cn } from '@/utils/cn'
 
 interface PuzzleProps {
   onEmpty?: (index: TilePosition) => void
@@ -27,7 +28,7 @@ const Puzzle = ({ onEmpty }: PuzzleProps) => {
   }, [])
 
   return (
-    <div className={`relative ${PUZZLE_SIZE_CLASSES[PUZZLE_SIZE]}`}>
+    <div className={cn('relative', PUZZLE_SIZE_CLASSES[PUZZLE_SIZE])}>
       {ORDERED_POSITIONS.map((position: number, index: number) => (
         <Tile
           key={position}
