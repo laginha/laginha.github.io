@@ -14,11 +14,21 @@
   }
 }
 
+:root {
+  --tile: min(8rem, 30vw);
+  --puzzle: calc(var(--tile) * 3);
+}
+
 .tile {
   left: 0;
   top: 0;
+  transform: translate(
+    calc(var(--col) * var(--tile)),
+    calc(var(--row) * var(--tile))
+  );
   background-image: url('https://avatars.githubusercontent.com/u/25960');
-  background-size: 24rem; /* to match h-96 and w-96 of puzzle size*/
+  background-size: var(--puzzle);
+  background-position: calc(var(--pos-col) * 50%) calc(var(--pos-row) * 50%);
   background-repeat: no-repeat;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -28,90 +38,7 @@
 }
 .empty {
   transition: background-image 0.2s;
-  background-position: center center !important;
-  background-size: 7.9rem !important;
-}
-
-.tile[data-index='0'] {
-  transform: translate(0, 0);
-}
-.tile[data-index='1'] {
-  transform: translate(8rem, 0);
-}
-.tile[data-index='2'] {
-  transform: translate(16rem, 0);
-}
-.tile[data-index='3'] {
-  transform: translate(0, 8rem);
-}
-.tile[data-index='4'] {
-  transform: translate(8rem, 8rem);
-}
-.tile[data-index='5'] {
-  transform: translate(16rem, 8rem);
-}
-.tile[data-index='6'] {
-  transform: translate(0, 16rem);
-}
-.tile[data-index='7'] {
-  transform: translate(8rem, 16rem);
-}
-.tile[data-index='8'] {
-  transform: translate(16rem, 16rem);
-}
-
-.empty[data-index='0'] {
-  background-image: var(--icon-0);
-}
-.empty[data-index='1'] {
-  background-image: var(--icon-1);
-}
-.empty[data-index='2'] {
-  background-image: var(--icon-2);
-}
-.empty[data-index='3'] {
-  background-image: var(--icon-3);
-}
-.empty[data-index='4'] {
-  background-image: var(--icon-4);
-}
-.empty[data-index='5'] {
-  background-image: var(--icon-5);
-}
-.empty[data-index='6'] {
-  background-image: var(--icon-6);
-}
-.empty[data-index='7'] {
-  background-image: var(--icon-7);
-}
-.empty[data-index='8'] {
-  background-image: var(--icon-8);
-}
-
-.tile[data-pos='0'] {
-  background-position: left top;
-}
-.tile[data-pos='1'] {
-  background-position: center top;
-}
-.tile[data-pos='2'] {
-  background-position: right top;
-}
-.tile[data-pos='3'] {
-  background-position: left center;
-}
-.tile[data-pos='4'] {
-  background-position: center center;
-}
-.tile[data-pos='5'] {
-  background-position: right center;
-}
-.tile[data-pos='6'] {
-  background-position: left bottom;
-}
-.tile[data-pos='7'] {
-  background-position: center bottom;
-}
-.tile[data-pos='8'] {
-  background-position: right bottom;
+  background-image: var(--icon);
+  background-position: center;
+  background-size: calc(var(--tile) - 0.1rem);
 }

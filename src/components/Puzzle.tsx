@@ -7,15 +7,14 @@ import {
 
 import Tile from '@/components/Tile'
 import { cn } from '@/utils/cn'
+import { EMPTY_TILE_POSITION, ORDERED_POSITIONS } from '@/utils/constants'
 import {
-  EMPTY_TILE_POSITION,
-  ORDERED_POSITIONS,
-  PUZZLE_SIZE,
-  PUZZLE_SIZE_CLASSES,
-  TILE_SIZE_CLASSES
-} from '@/utils/constants'
-import { shuffle, swapTiles } from '@/utils/swap'
-import type { TilePosition, TileSize } from '@/utils/types'
+  pictureVariables,
+  shuffle,
+  swapTiles,
+  tileVariables
+} from '@/utils/swap'
+import type { TilePosition } from '@/utils/types'
 
 interface PuzzleProps extends ComponentProps<'div'> {
   icons: string[]
@@ -29,8 +28,8 @@ function Puzzle({
   style,
   ...props
 }: PuzzleProps) {
-  // The empty tile picks its icon by data-index (see index.css), which swap.ts
-  // changes outside React, so expose each icon as a --icon-N custom property
+  // swap.ts moves tiles outside React, so the empty tile can't get its icon as
+  // a prop. Expose each icon as --icon-N and let tileVariables pick one
   const iconVariables = Object.fromEntries(
     icons.map((icon, index) => [
       `--icon-${index}`,
@@ -51,16 +50,20 @@ function Puzzle({
     <div
       role="group"
       aria-label="Sliding puzzle"
-      className={cn('relative', PUZZLE_SIZE_CLASSES[PUZZLE_SIZE], className)}
+      className={cn('relative size-(--puzzle)', className)}
       style={{ ...iconVariables, ...style }}
       {...props}
     >
       {ORDERED_POSITIONS.map((position, index) => (
         <Tile
           key={position}
-          data-pos={position}
           data-index={index}
-          className={TILE_SIZE_CLASSES[(PUZZLE_SIZE / 3) as TileSize]}
+          style={
+            {
+              ...pictureVariables(position),
+              ...tileVariables(index)
+            } as CSSProperties
+          }
           isEmpty={position === EMPTY_TILE_POSITION}
           aria-label={
             position === EMPTY_TILE_POSITION

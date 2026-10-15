@@ -21,6 +21,27 @@ const possibleMoves = (index: number): Tiles => {
   return [left, right, top, bottom].filter((i) => i >= 0 && i < 9) as Tiles
 }
 
+// CSS variables that place a tile in slot `index` (see .tile in index.css).
+// The empty tile also shows the icon for its slot, read from --icon-N on the puzzle
+export const tileVariables = (index: number) => ({
+  '--col': String(index % 3),
+  '--row': String(Math.floor(index / 3)),
+  '--icon': `var(--icon-${index})`
+})
+
+// CSS variables that pick the slice of the picture a tile shows
+export const pictureVariables = (position: TilePosition) => ({
+  '--pos-col': String(position % 3),
+  '--pos-row': String(Math.floor(position / 3))
+})
+
+const moveTile = (tile: HTMLButtonElement, index: number) => {
+  tile.dataset.index = index.toString()
+  for (const [name, value] of Object.entries(tileVariables(index))) {
+    tile.style.setProperty(name, value)
+  }
+}
+
 const getEmptyElement = (): [HTMLButtonElement, TilePosition] => {
   const empty = document.querySelector('.empty') as HTMLButtonElement
   if (!empty.dataset.index) {
@@ -35,8 +56,8 @@ export const swapTiles = (e: MouseEvent<HTMLButtonElement>) => {
 
   const indexOfTile = Number(e.currentTarget.dataset.index as string)
   if (possibilities.includes(indexOfTile as TilePosition)) {
-    empty.dataset.index = indexOfTile.toString()
-    e.currentTarget.dataset.index = indexOfEmpty.toString()
+    moveTile(empty, indexOfTile)
+    moveTile(e.currentTarget, indexOfEmpty)
   }
 }
 
@@ -67,8 +88,8 @@ export const shuffle = (): (() => void) => {
 
     if (tileToSwap) {
       previousEmpty = indexOfEmpty
-      empty.dataset.index = randomIndex.toString()
-      tileToSwap.dataset.index = indexOfEmpty.toString()
+      moveTile(empty, randomIndex)
+      moveTile(tileToSwap, indexOfEmpty)
     }
 
     if (--movesLeft === 0) {
