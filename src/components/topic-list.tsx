@@ -48,10 +48,10 @@ function Project({ role, href, children }: ProjectProps) {
 
 function ListItem({ children }: { children: ReactNode }) {
   return (
-    <div className="flex mt-2">
+    <li className="flex mt-2">
       <span className="mr-2">•</span>
       <div>{children}</div>
-    </div>
+    </li>
   )
 }
 
@@ -69,7 +69,7 @@ const TOPIC_LIST: TopicItem[] = [
       <Topic tags={['family', 'toddler', 'proud', 'love']}>
         <p>
           I'm a doting father to a spirited 2-year-old girl who fought to
-          survive a difficult childbirth and continues to battle until this day
+          survive a difficult childbirth and continues to battle to this day
           against changing diapers and eating soap. I strive to spend as much
           time with her as possible while balancing work and life, which is
           often challenging.
@@ -88,13 +88,13 @@ const TOPIC_LIST: TopicItem[] = [
       <Topic tags={['snooker', 'reading', 'mentalhealth']}>
         <p>
           While juggling family and work, we often forget to nurture our
-          well-being. To maintain my mental health in check, I try to escape
-          from overwhelming responsibilities by reading a book.
+          well-being. To keep my mental health in check, I try to escape from
+          overwhelming responsibilities by reading a book.
         </p>
         <p>
           It was only recently that I've discovered a passion for English
           Snooker. Playing on the 12-foot table, I find myself fully immersed in
-          the moment, away from daily anxieties - until I miss an easy shot.
+          the moment, away from daily anxieties — until I miss an easy shot.
         </p>
       </Topic>
     )
@@ -111,8 +111,8 @@ const TOPIC_LIST: TopicItem[] = [
         </p>
         <p>
           I enjoy leading teams using Scrum and Kanban software development
-          methodologies, but those are the only things agile about me - I have a
-          body of a nonagenarian
+          methodologies, but those are the only things agile about me — I have
+          the body of a nonagenarian.
         </p>
       </Topic>
     )
@@ -123,7 +123,7 @@ const TOPIC_LIST: TopicItem[] = [
     content: (
       <Topic tags={['javascript', 'react', 'nextjs', 'advanced']}>
         <p>
-          Coming from a backend background, I soon felt drawn to the Javascript
+          Coming from a backend background, I soon felt drawn to the JavaScript
           ecosystem and it became an important part of my life, one that I'm
           enthusiastic about and defines me as a developer.
         </p>
@@ -131,13 +131,13 @@ const TOPIC_LIST: TopicItem[] = [
           As I delved deeper into frontend, I grew proficient in React and
           well-versed in Next.js framework, confidently building quality
           products. With several years of experience to my name, this is where I
-          vercel - pun intended
+          vercel — pun intended.
         </p>
       </Topic>
     )
   },
   {
-    title: 'Typescript',
+    title: 'TypeScript',
     icon: typescriptIcon,
     content: (
       <Topic tags={['frontend', 'typescript', 'proficient']}>
@@ -148,9 +148,9 @@ const TOPIC_LIST: TopicItem[] = [
           complication that would slow me down.
         </p>
         <p>
-          As I gradually integrated Typescript into my workflow, I began to
+          As I gradually integrated TypeScript into my workflow, I began to
           appreciate its ability to bring robustness and reliability to my
-          codebase - giving me more time to enjoy anything but debugging
+          codebase — giving me more time to enjoy anything but debugging.
         </p>
       </Topic>
     )
@@ -167,7 +167,7 @@ const TOPIC_LIST: TopicItem[] = [
           implementation drew me in and encouraged me to give them a try.
         </p>
         <p>
-          Nowadays, I have a deeper understanding of CSS and I am confortable in
+          Nowadays, I have a deeper understanding of CSS and I am comfortable
           navigating it. I look forward to finding opportunities to continue to
           flex-grow in this field.
         </p>
@@ -190,7 +190,7 @@ const TOPIC_LIST: TopicItem[] = [
           More recently, I've adopted JAMstack architectures and embraced
           headless CMS solutions like Keystone, as well as BaaS platforms such
           as Supabase. This shift has allowed me to focus more on user
-          experience and application logic - no more dreadful backend work.
+          experience and application logic — no more dreadful backend work.
         </p>
       </Topic>
     )
@@ -208,7 +208,7 @@ const TOPIC_LIST: TopicItem[] = [
           understand business goals through Discoveries and translate use cases
           into technical roadmaps.
         </p>
-        <div>
+        <ul>
           <Project role="Tech lead" href="https://wageforwork.com">
             rethink the user experience and improve the overall code quality and
             robustness
@@ -223,7 +223,7 @@ const TOPIC_LIST: TopicItem[] = [
             re-build the application with special focus on scalability and
             availability
           </Project>
-        </div>
+        </ul>
       </Topic>
     )
   },
@@ -238,7 +238,7 @@ const TOPIC_LIST: TopicItem[] = [
           transformed my development workflow.
         </p>
         <div>
-          <ListItem>Setup development environments.</ListItem>
+          <ListItem>Set up development environments.</ListItem>
           <ListItem>Improve code quality and robustness.</ListItem>
           <ListItem>Write useful documentation.</ListItem>
           <ListItem>Automate repetitive tasks.</ListItem>
@@ -248,8 +248,8 @@ const TOPIC_LIST: TopicItem[] = [
           </ListItem>
         </div>
         <p>
-          I'm committed to keep leveraging AI to enhance productivity and
-          streamline tasks - hoping one day to be fully emancipated
+          I'm committed to continuing to leverage AI to enhance productivity and
+          streamline tasks — hoping one day to be fully emancipated.
         </p>
       </Topic>
     )

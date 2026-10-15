@@ -17,10 +17,14 @@
 .tile {
   left: 0;
   top: 0;
-  transition: transform 0.4s;
   background-image: url('https://avatars.githubusercontent.com/u/25960');
   background-size: 24rem; /* to match h-96 and w-96 of puzzle size*/
   background-repeat: no-repeat;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tile {
+    transition: transform 0.4s;
+  }
 }
 .empty {
   transition: background-image 0.2s;
