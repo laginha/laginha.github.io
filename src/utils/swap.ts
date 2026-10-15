@@ -26,22 +26,34 @@ const getEmptyElement = (): [HTMLButtonElement, TilePosition] => {
   if (!empty.dataset.index) {
     throw Error('Empty tile not found')
   }
-  return [empty, parseInt(empty.dataset.index) as TilePosition]
+  return [empty, Number(empty.dataset.index) as TilePosition]
 }
 
 export const swapTiles = (e: MouseEvent<HTMLButtonElement>) => {
   const [empty, indexOfEmpty] = getEmptyElement()
   const possibilities = possibleMoves(indexOfEmpty)
 
-  const indexOfTile = parseInt(e.currentTarget.dataset.index as string)
+  const indexOfTile = Number(e.currentTarget.dataset.index as string)
   if (possibilities.includes(indexOfTile as TilePosition)) {
     empty.dataset.index = indexOfTile.toString()
     e.currentTarget.dataset.index = indexOfEmpty.toString()
   }
 }
 
-export const shuffle = () => {
+const SHUFFLE_MOVES = 7
+const SHUFFLE_INTERVAL_MS = 400
+
+let stopActiveShuffle: (() => void) | undefined
+
+// Returns a function that stops the shuffle, so it can be used as an effect cleanup
+export const shuffle = (): (() => void) => {
+  stopActiveShuffle?.()
+
+  const tiles = Array.from(
+    document.querySelectorAll<HTMLButtonElement>('[data-index]')
+  )
   let previousEmpty: TilePosition = EMPTY_TILE_POSITION
+  let movesLeft = SHUFFLE_MOVES
 
   const intervalId = setInterval(() => {
     const [empty, indexOfEmpty] = getEmptyElement()
@@ -49,18 +61,28 @@ export const shuffle = () => {
       (i) => i !== previousEmpty
     )
     const randomIndex = possibilities[randomNumber(possibilities.length)]
-    const tileToSwap = document.querySelector(
-      `[data-index="${randomIndex}"]`
-    ) as HTMLButtonElement
+    const tileToSwap = tiles.find(
+      (tile) => tile.dataset.index === randomIndex.toString()
+    )
 
     if (tileToSwap) {
       previousEmpty = indexOfEmpty
       empty.dataset.index = randomIndex.toString()
       tileToSwap.dataset.index = indexOfEmpty.toString()
     }
-  }, 400)
 
-  setTimeout(() => {
+    if (--movesLeft === 0) {
+      stop()
+    }
+  }, SHUFFLE_INTERVAL_MS)
+
+  const stop = () => {
     clearInterval(intervalId)
-  }, 3000)
+    if (stopActiveShuffle === stop) {
+      stopActiveShuffle = undefined
+    }
+  }
+
+  stopActiveShuffle = stop
+  return stop
 }

@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 
 import Button from '@/components/Button'
+import Link from '@/components/Link'
 import Modal from '@/components/Modal'
 import Puzzle from '@/components/Puzzle'
 import TOPIC_LIST from '@/components/topic-list'
@@ -8,8 +9,6 @@ import { cn } from '@/utils/cn'
 import { PUZZLE_SIZE, PUZZLE_WIDTH_CLASSES } from '@/utils/constants'
 import { shuffle } from '@/utils/swap'
 import { TilePosition } from '@/utils/types'
-
-import Link from './components/Link'
 
 const ICONS = TOPIC_LIST.map((topic) => topic.icon)
 
@@ -30,7 +29,7 @@ function App() {
         the empty square to find more about me or simply go to my{' '}
         <Link href="/cv.html">CV</Link>
       </p>
-      <Puzzle icons={ICONS} onEmpty={setTilePosition} />
+      <Puzzle icons={ICONS} onEmptyTileClick={setTilePosition} />
       <Button className="w-full" onClick={shuffle}>
         reshuffle
       </Button>

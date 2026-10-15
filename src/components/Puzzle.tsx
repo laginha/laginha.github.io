@@ -19,10 +19,16 @@ import type { TilePosition, TileSize } from '@/utils/types'
 
 interface PuzzleProps extends ComponentProps<'div'> {
   icons: string[]
-  onEmpty?: (index: TilePosition) => void
+  onEmptyTileClick?: (index: TilePosition) => void
 }
 
-function Puzzle({ icons, onEmpty, className, style, ...props }: PuzzleProps) {
+function Puzzle({
+  icons,
+  onEmptyTileClick,
+  className,
+  style,
+  ...props
+}: PuzzleProps) {
   // The empty tile picks its icon by data-index (see index.css), which swap.ts
   // changes outside React, so expose each icon as a --icon-N custom property
   const iconVariables = Object.fromEntries(
@@ -34,14 +40,12 @@ function Puzzle({ icons, onEmpty, className, style, ...props }: PuzzleProps) {
 
   const onEmptyClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { index } = e.currentTarget.dataset
-    if (index && onEmpty) {
-      onEmpty(parseInt(index) as TilePosition)
+    if (index && onEmptyTileClick) {
+      onEmptyTileClick(Number(index) as TilePosition)
     }
   }
 
-  useEffect(() => {
-    shuffle()
-  }, [])
+  useEffect(() => shuffle(), [])
 
   return (
     <div
@@ -51,7 +55,7 @@ function Puzzle({ icons, onEmpty, className, style, ...props }: PuzzleProps) {
       style={{ ...iconVariables, ...style }}
       {...props}
     >
-      {ORDERED_POSITIONS.map((position: number, index: number) => (
+      {ORDERED_POSITIONS.map((position, index) => (
         <Tile
           key={position}
           data-pos={position}
