@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react'
+import type { KeyboardEvent, MouseEvent } from 'react'
 
 import { EMPTY_TILE_POSITION, GRID_SIZE } from './constants'
 
@@ -28,12 +28,38 @@ export const pictureVariables = (position: number) => ({
   '--pos-row': String(Math.floor(position / GRID_SIZE))
 })
 
+const describeSlot = (index: number) =>
+  `row ${Math.floor(index / GRID_SIZE) + 1}, column ${(index % GRID_SIZE) + 1}`
+
+// Pieces are numbered by their slot in the solved picture, so the label tells
+// a screen reader user both where a piece is and where it belongs
+export const tileLabel = (position: number, index: number) =>
+  position === EMPTY_TILE_POSITION
+    ? `Learn more about me (empty slot at ${describeSlot(index)})`
+    : `Piece ${position} at ${describeSlot(index)}`
+
 const moveTile = (tile: HTMLButtonElement, index: number) => {
   tile.dataset.index = index.toString()
+  tile.setAttribute(
+    'aria-label',
+    tileLabel(Number(tile.dataset.position), index)
+  )
   for (const [name, value] of Object.entries(tileVariables(index))) {
     tile.style.setProperty(name, value)
   }
 }
+
+const announce = (message: string) => {
+  const status = document.querySelector('[data-puzzle-status]')
+  if (status) {
+    status.textContent = message
+  }
+}
+
+const isSolved = () =>
+  Array.from(
+    document.querySelectorAll<HTMLButtonElement>('[data-index]')
+  ).every((tile) => tile.dataset.index === tile.dataset.position)
 
 const getEmptyElement = (): [HTMLButtonElement, number] => {
   const empty = document.querySelector<HTMLButtonElement>('.empty')
@@ -43,14 +69,53 @@ const getEmptyElement = (): [HTMLButtonElement, number] => {
   return [empty, Number(empty.dataset.index)]
 }
 
-export const swapTiles = (e: MouseEvent<HTMLButtonElement>) => {
+const slideIntoEmpty = (tile: HTMLButtonElement) => {
   const [empty, indexOfEmpty] = getEmptyElement()
-  const possibilities = possibleMoves(indexOfEmpty)
+  const indexOfTile = Number(tile.dataset.index)
+  if (!possibleMoves(indexOfEmpty).includes(indexOfTile)) {
+    return
+  }
 
-  const indexOfTile = Number(e.currentTarget.dataset.index as string)
-  if (possibilities.includes(indexOfTile)) {
-    moveTile(empty, indexOfTile)
-    moveTile(e.currentTarget, indexOfEmpty)
+  moveTile(empty, indexOfTile)
+  moveTile(tile, indexOfEmpty)
+  announce(
+    `Piece ${tile.dataset.position} moved to ${describeSlot(indexOfEmpty)}` +
+      (isSolved() ? '. Puzzle solved!' : '')
+  )
+}
+
+export const swapTiles = (e: MouseEvent<HTMLButtonElement>) =>
+  slideIntoEmpty(e.currentTarget)
+
+// Arrow keys slide the neighbouring piece in that direction into the empty
+// slot, e.g. ArrowUp moves the piece below the empty slot up. Values are the
+// [row, column] offset from the empty slot to that piece
+const ARROW_OFFSETS: Record<string, [number, number]> = {
+  ArrowUp: [1, 0],
+  ArrowDown: [-1, 0],
+  ArrowLeft: [0, 1],
+  ArrowRight: [0, -1]
+}
+
+export const slideWithArrowKey = (e: KeyboardEvent<HTMLElement>) => {
+  const offset = ARROW_OFFSETS[e.key]
+  if (!offset) {
+    return
+  }
+  e.preventDefault()
+
+  const [, indexOfEmpty] = getEmptyElement()
+  const row = Math.floor(indexOfEmpty / GRID_SIZE) + offset[0]
+  const col = (indexOfEmpty % GRID_SIZE) + offset[1]
+  if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE) {
+    return
+  }
+
+  const tile = e.currentTarget.querySelector<HTMLButtonElement>(
+    `[data-index="${row * GRID_SIZE + col}"]`
+  )
+  if (tile) {
+    slideIntoEmpty(tile)
   }
 }
 

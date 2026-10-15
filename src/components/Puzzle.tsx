@@ -2,7 +2,8 @@ import {
   type ComponentProps,
   type CSSProperties,
   type MouseEvent,
-  useEffect
+  useEffect,
+  useId
 } from 'react'
 
 import Tile from '@/components/Tile'
@@ -11,7 +12,9 @@ import { EMPTY_TILE_POSITION, ORDERED_POSITIONS } from '@/utils/constants'
 import {
   pictureVariables,
   shuffle,
+  slideWithArrowKey,
   swapTiles,
+  tileLabel,
   tileVariables
 } from '@/utils/swap'
 
@@ -43,12 +46,16 @@ function Puzzle({
     }
   }
 
+  const instructionsId = useId()
+
   useEffect(() => shuffle(), [])
 
   return (
     <div
       role="group"
       aria-label="Sliding puzzle"
+      aria-describedby={instructionsId}
+      onKeyDown={slideWithArrowKey}
       className={cn('relative size-(--puzzle)', className)}
       style={{ ...iconVariables, ...style }}
       {...props}
@@ -57,6 +64,7 @@ function Puzzle({
         <Tile
           key={position}
           data-index={index}
+          data-position={position}
           style={
             {
               ...pictureVariables(position),
@@ -64,14 +72,16 @@ function Puzzle({
             } as CSSProperties
           }
           isEmpty={position === EMPTY_TILE_POSITION}
-          aria-label={
-            position === EMPTY_TILE_POSITION
-              ? 'Learn more about me'
-              : `Move piece ${position}`
-          }
+          aria-label={tileLabel(position, index)}
           onClick={position === EMPTY_TILE_POSITION ? onEmptyClick : swapTiles}
         />
       ))}
+      <p id={instructionsId} className="sr-only">
+        Pieces are numbered by where they belong in the picture, left to right
+        and top to bottom, with the empty slot at the top left. Use the arrow
+        keys to slide a piece into the empty slot.
+      </p>
+      <p className="sr-only" aria-live="polite" data-puzzle-status />
     </div>
   )
 }

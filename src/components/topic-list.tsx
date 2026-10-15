@@ -20,7 +20,7 @@ function Topic({ tags, children, className, ...props }: TopicProps) {
   return (
     <div className={cn('flex flex-col gap-4 text-left', className)} {...props}>
       {children}
-      <ul className="text-blue-400 flex flex-wrap gap-x-2 justify-end">
+      <ul className="text-blue-600 flex flex-wrap gap-x-2 justify-end">
         {tags.map((tag) => (
           <li key={tag}>#{tag}</li>
         ))}
@@ -49,7 +49,9 @@ function Project({ role, href, children }: ProjectProps) {
 function ListItem({ children }: { children: ReactNode }) {
   return (
     <li className="flex mt-2">
-      <span className="mr-2">•</span>
+      <span className="mr-2" aria-hidden="true">
+        •
+      </span>
       <div>{children}</div>
     </li>
   )
