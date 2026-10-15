@@ -1,4 +1,9 @@
-import { type ComponentProps, type MouseEvent, useEffect } from 'react'
+import {
+  type ComponentProps,
+  type CSSProperties,
+  type MouseEvent,
+  useEffect
+} from 'react'
 
 import Tile from '@/components/Tile'
 import { cn } from '@/utils/cn'
@@ -13,10 +18,20 @@ import { shuffle, swapTiles } from '@/utils/swap'
 import type { TilePosition, TileSize } from '@/utils/types'
 
 interface PuzzleProps extends ComponentProps<'div'> {
+  icons: string[]
   onEmpty?: (index: TilePosition) => void
 }
 
-function Puzzle({ onEmpty, className, ...props }: PuzzleProps) {
+function Puzzle({ icons, onEmpty, className, style, ...props }: PuzzleProps) {
+  // The empty tile picks its icon by data-index (see index.css), which swap.ts
+  // changes outside React, so expose each icon as a --icon-N custom property
+  const iconVariables = Object.fromEntries(
+    icons.map((icon, index) => [
+      `--icon-${index}`,
+      `url(${JSON.stringify(icon)})`
+    ])
+  ) as CSSProperties
+
   const onEmptyClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { index } = e.currentTarget.dataset
     if (index && onEmpty) {
@@ -33,6 +48,7 @@ function Puzzle({ onEmpty, className, ...props }: PuzzleProps) {
       role="group"
       aria-label="Sliding puzzle"
       className={cn('relative', PUZZLE_SIZE_CLASSES[PUZZLE_SIZE], className)}
+      style={{ ...iconVariables, ...style }}
       {...props}
     >
       {ORDERED_POSITIONS.map((position: number, index: number) => (

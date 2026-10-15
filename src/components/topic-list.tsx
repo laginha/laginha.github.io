@@ -1,6 +1,15 @@
 import type { ComponentProps, ReactNode } from 'react'
 
 import Link from '@/components/Link'
+import aiIcon from '@/icons/ai.svg'
+import databaseIcon from '@/icons/database.svg'
+import familyIcon from '@/icons/family.svg'
+import reactIcon from '@/icons/react.svg'
+import rocketIcon from '@/icons/rocket.svg'
+import snookerIcon from '@/icons/snooker.svg'
+import tailwindIcon from '@/icons/tailwind.svg'
+import teamIcon from '@/icons/team.svg'
+import typescriptIcon from '@/icons/typescript.svg'
 import { cn } from '@/utils/cn'
 
 interface TopicProps extends ComponentProps<'div'> {
@@ -46,11 +55,17 @@ function ListItem({ children }: { children: ReactNode }) {
   )
 }
 
-const TOPICS: { title: string; children: ReactNode }[] = [
-  // 0
+export interface TopicItem {
+  title: string
+  icon: string
+  content: ReactNode
+}
+
+const TOPIC_LIST: TopicItem[] = [
   {
     title: 'Parenting',
-    children: (
+    icon: familyIcon,
+    content: (
       <Topic tags={['family', 'toddler', 'proud', 'love']}>
         <p>
           I'm a doting father to a spirited 2-year-old girl who fought to
@@ -66,10 +81,10 @@ const TOPICS: { title: string; children: ReactNode }[] = [
       </Topic>
     )
   },
-  // 1
   {
     title: 'Hobbies',
-    children: (
+    icon: snookerIcon,
+    content: (
       <Topic tags={['snooker', 'reading', 'mentalhealth']}>
         <p>
           While juggling family and work, we often forget to nurture our
@@ -84,10 +99,10 @@ const TOPICS: { title: string; children: ReactNode }[] = [
       </Topic>
     )
   },
-  // 2
   {
     title: 'Soft skills',
-    children: (
+    icon: teamIcon,
+    content: (
       <Topic tags={['team', 'mentoring', 'agile']}>
         <p>
           Although I appreciate the quirks of working remotely, I thrive as a
@@ -102,10 +117,10 @@ const TOPICS: { title: string; children: ReactNode }[] = [
       </Topic>
     )
   },
-  // 3
   {
     title: 'Frontend development',
-    children: (
+    icon: reactIcon,
+    content: (
       <Topic tags={['javascript', 'react', 'nextjs', 'advanced']}>
         <p>
           Coming from a backend background, I soon felt drawn to the Javascript
@@ -121,10 +136,10 @@ const TOPICS: { title: string; children: ReactNode }[] = [
       </Topic>
     )
   },
-  // 4
   {
     title: 'Typescript',
-    children: (
+    icon: typescriptIcon,
+    content: (
       <Topic tags={['frontend', 'typescript', 'proficient']}>
         <p>
           When I first encountered TypeScript, I was skeptical about its
@@ -140,10 +155,10 @@ const TOPICS: { title: string; children: ReactNode }[] = [
       </Topic>
     )
   },
-  // 5
   {
     title: 'CSS',
-    children: (
+    icon: tailwindIcon,
+    content: (
       <Topic tags={['frontend', 'tailwind', 'novice']}>
         <p>
           My initial mistrust kept me away from doing CSS for quite some time.
@@ -159,10 +174,10 @@ const TOPICS: { title: string; children: ReactNode }[] = [
       </Topic>
     )
   },
-  // 6
   {
     title: 'Backend background',
-    children: (
+    icon: databaseIcon,
+    content: (
       <Topic tags={['supabase', 'keystone', 'proficient']}>
         <p>
           A younger version of myself was deeply involved in backend
@@ -180,10 +195,10 @@ const TOPICS: { title: string; children: ReactNode }[] = [
       </Topic>
     )
   },
-  // 7
   {
     title: 'Projects',
-    children: (
+    icon: rocketIcon,
+    content: (
       <Topic tags={['w.a.g.e.', 'mishe', 'createacademy', 'lexacon']}>
         <p>
           In 2016, I joined{' '}
@@ -212,10 +227,10 @@ const TOPICS: { title: string; children: ReactNode }[] = [
       </Topic>
     )
   },
-  // 8
   {
     title: 'AI enabled',
-    children: (
+    icon: aiIcon,
+    content: (
       <Topic tags={['chat-gpt', 'anthropic', 'cursor']}>
         <p>
           Although initially hesitant, I found that integrating AI tools like
@@ -241,4 +256,4 @@ const TOPICS: { title: string; children: ReactNode }[] = [
   }
 ]
 
-export default TOPICS
+export default TOPIC_LIST

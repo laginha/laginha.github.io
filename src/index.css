@@ -66,31 +66,31 @@
 }
 
 .empty[data-index='0'] {
-  background-image: url('./icons/family.svg');
+  background-image: var(--icon-0);
 }
 .empty[data-index='1'] {
-  background-image: url('./icons/snooker.svg');
+  background-image: var(--icon-1);
 }
 .empty[data-index='2'] {
-  background-image: url('./icons/team.svg');
+  background-image: var(--icon-2);
 }
 .empty[data-index='3'] {
-  background-image: url('./icons/react.svg');
+  background-image: var(--icon-3);
 }
 .empty[data-index='4'] {
-  background-image: url('./icons/typescript.svg');
+  background-image: var(--icon-4);
 }
 .empty[data-index='5'] {
-  background-image: url('./icons/tailwind.svg');
+  background-image: var(--icon-5);
 }
 .empty[data-index='6'] {
-  background-image: url('./icons/database.svg');
+  background-image: var(--icon-6);
 }
 .empty[data-index='7'] {
-  background-image: url('./icons/rocket.svg');
+  background-image: var(--icon-7);
 }
 .empty[data-index='8'] {
-  background-image: url('./icons/ai.svg');
+  background-image: var(--icon-8);
 }
 
 .tile[data-pos='0'] {
