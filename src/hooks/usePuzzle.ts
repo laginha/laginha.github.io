@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 
-import { createBoard, puzzleReducer } from './puzzle'
+import { createBoard, puzzleReducer } from '@/utils/puzzle'
 
 const SHUFFLE_MOVES = 7
 const SHUFFLE_INTERVAL_MS = 400

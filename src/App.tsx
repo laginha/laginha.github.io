@@ -5,7 +5,7 @@ import Link from '@/components/Link'
 import Modal from '@/components/Modal'
 import Puzzle from '@/components/Puzzle'
 import { TOPICS } from '@/content/topics'
-import { usePuzzle } from '@/utils/usePuzzle'
+import { usePuzzle } from '@/hooks/usePuzzle'
 
 function App() {
   const [selectedTopic, setSelectedTopic] = useState<null | number>(null)

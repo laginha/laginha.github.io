@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 
 import Link from '@/components/Link'
-import { ListItem, Project, Topic } from '@/components/Topic'
+import Project from '@/components/Project'
+import Topic from '@/components/Topic'
 import aiIcon from '@/icons/ai.svg'
 import databaseIcon from '@/icons/database.svg'
 import familyIcon from '@/icons/family.svg'
@@ -195,14 +196,14 @@ export const TOPICS: TopicItem[] = [
           transformed my development workflow.
         </p>
         <ul>
-          <ListItem>Set up development environments.</ListItem>
-          <ListItem>Improve code quality and robustness.</ListItem>
-          <ListItem>Write useful documentation.</ListItem>
-          <ListItem>Automate repetitive tasks.</ListItem>
-          <ListItem>Outline components with a given mockup.</ListItem>
-          <ListItem>
+          <li className="bullet">Set up development environments.</li>
+          <li className="bullet">Improve code quality and robustness.</li>
+          <li className="bullet">Write useful documentation.</li>
+          <li className="bullet">Automate repetitive tasks.</li>
+          <li className="bullet">Outline components with a given mockup.</li>
+          <li className="bullet">
             Gain insights into different approaches to challenging problems.
-          </ListItem>
+          </li>
         </ul>
         <p>
           I'm committed to continuing to leverage AI to enhance productivity and

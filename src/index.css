@@ -9,6 +9,10 @@
   }
 }
 
+@utility bullet {
+  @apply mt-2 ml-4 list-disc;
+}
+
 :root {
   --tile: min(8rem, 30vw);
 }

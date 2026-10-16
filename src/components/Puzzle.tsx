@@ -22,11 +22,11 @@ interface PuzzleProps extends ComponentProps<'div'> {
   onEmptyTileClick?: (currentSlot: number) => void
 }
 
-const tileStyle = (
+function tileStyle(
   homeSlot: number,
   currentSlot: number,
   size: number
-): CSSProperties => {
+): CSSProperties {
   const current = toCoords(currentSlot, size)
   const home = toCoords(homeSlot, size)
   return {
