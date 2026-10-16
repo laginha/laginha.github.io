@@ -5,7 +5,7 @@ import { cn } from '@/utils/cn'
 function Link({ className, children, ...props }: ComponentProps<'a'>) {
   return (
     <a
-      className={cn('text-blue-600 hover:text-blue-800', className)}
+      className={cn('link', className)}
       target="_blank"
       rel="noreferrer"
       {...props}

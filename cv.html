@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="snap-y snap-proximity">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="/src/cv.css" />
   </head>
   <body class="bg-gray-100 text-base container mx-auto flex justify-center">
-    <div class="w-full md:w-3/4 lg:w-1/2 bg-white rounded-lg shadow-md p-8">
-      <header class="flex items-center mb-6">
+    <div
+      class="w-full md:w-3/4 lg:w-1/2 bg-white rounded-lg shadow-md p-4 md:p-8"
+    >
+      <header class="section flex items-center">
         <img
           class="w-20 h-20 rounded-full mr-4"
           src="%VITE_AVATAR_URL%"
@@ -22,39 +24,35 @@
       </header>
 
       <main>
-        <section class="mb-6">
-          <h2 class="text-lg font-bold mb-2">Contact</h2>
-          <dl class="flex flex-col gap-1">
-            <div class="flex gap-1">
+        <section class="section">
+          <h2 class="section-title">Contact</h2>
+          <dl class="stack">
+            <div class="box">
               <dt>GitHub:</dt>
               <dd>
-                <a
-                  href="https://github.com/laginha"
-                  class="text-blue-600 hover:text-blue-800"
+                <a href="https://github.com/laginha" class="link"
                   >https://github.com/laginha</a
                 >
               </dd>
             </div>
-            <div class="flex gap-1">
+            <div class="box">
               <dt>Email:</dt>
               <dd>
-                <a
-                  href="mailto:diogo.laginha.machado@gmail.com"
-                  class="text-blue-600 hover:text-blue-800"
+                <a href="mailto:diogo.laginha.machado@gmail.com" class="link"
                   >diogo.laginha.machado@gmail.com</a
                 >
               </dd>
             </div>
-            <div class="flex gap-1">
+            <div class="box">
               <dt>Residence:</dt>
               <dd class="text-gray-600">Coimbra, Portugal</dd>
             </div>
           </dl>
         </section>
 
-        <section class="mb-6">
-          <h2 class="text-lg font-bold mb-2">Summary</h2>
-          <div class="flex flex-col gap-2">
+        <section class="section">
+          <h2 class="section-title">Summary</h2>
+          <div class="stack">
             <p>
               Enjoys mentoring and leading teams, with a passion for new
               technologies and eagerness to apply fresh knowledge on promising
@@ -67,9 +65,9 @@
           </div>
         </section>
 
-        <section class="mb-6">
-          <h2 class="text-lg font-bold mb-2">About me</h2>
-          <div class="flex flex-col gap-2">
+        <section class="section">
+          <h2 class="section-title">About me</h2>
+          <div class="stack">
             <p>
               I come from a backend development background, but I soon felt
               drawn to the JavaScript ecosystem. Hence I followed my work
@@ -89,13 +87,11 @@
                 <div>
                   <p>
                     Tech lead at
-                    <a
-                      class="text-blue-600 hover:text-blue-800"
-                      href="https://wageforwork.com"
+                    <a class="link" href="https://wageforwork.com"
                       >https://wageforwork.com</a
                     >
                   </p>
-                  <p class="text-sm text-gray-600">
+                  <p class="caption">
                     rethink the user experience and improve the overall code
                     quality and robustness
                   </p>
@@ -105,13 +101,11 @@
                 <div>
                   <p>
                     Tech lead at
-                    <a
-                      class="text-blue-600 hover:text-blue-800"
-                      href="https://mishe.co/"
+                    <a class="link" href="https://mishe.co/"
                       >https://mishe.co/</a
                     >
                   </p>
-                  <p class="text-sm text-gray-600">
+                  <p class="caption">
                     develop the product from scratch on top of coding best
                     practices
                   </p>
@@ -121,13 +115,11 @@
                 <div>
                   <p>
                     Full-stack developer at
-                    <a
-                      class="text-blue-600 hover:text-blue-800"
-                      href="https://www.createacademy.com/"
+                    <a class="link" href="https://www.createacademy.com/"
                       >https://www.createacademy.com/</a
                     >
                   </p>
-                  <p class="text-sm text-gray-600">
+                  <p class="caption">
                     re-build the application with special focus on scalability
                     and availability
                   </p>
@@ -143,66 +135,62 @@
           </div>
         </section>
 
-        <section class="mb-6">
-          <h2 class="text-lg font-bold mb-2">Skillset</h2>
+        <section class="section">
+          <h2 class="section-title">Skillset</h2>
           <ul class="bullet-list">
             <li>
               React
-              <span class="text-sm text-gray-600">9 years of experience</span>
+              <span class="caption">9 years of experience</span>
             </li>
             <li>
               Next
-              <span class="text-sm text-gray-600">4 years of experience</span>
+              <span class="caption">4 years of experience</span>
             </li>
             <li>
               Vue
-              <span class="text-sm text-gray-600">5 years of experience</span>
+              <span class="caption">5 years of experience</span>
             </li>
             <li>
               TypeScript
-              <span class="text-sm text-gray-600">3 years of experience</span>
+              <span class="caption">3 years of experience</span>
             </li>
             <li>
               GraphQL
-              <span class="text-sm text-gray-600">3 years of experience</span>
+              <span class="caption">3 years of experience</span>
             </li>
             <li>
               Keystone.js
-              <span class="text-sm text-gray-600">3 years of experience</span>
-            </li>
-            <li>
-              Supabase
-              <span class="text-sm text-gray-600">1 year of experience</span>
+              <span class="caption">3 years of experience</span>
             </li>
           </ul>
         </section>
 
-        <section class="mb-6">
-          <h2 class="text-lg font-bold mb-2">Experience</h2>
-          <ul role="list">
-            <li class="mb-2">
+        <section class="section">
+          <h2 class="section-title">Experience</h2>
+          <ul class="bullet-list">
+            <li>
               <p>Frontend lead at Eneida</p>
-              <p class="text-sm text-gray-600">
-                <time datetime="2025-02">February 2025</time> – Current
+              <p class="caption">
+                <time datetime="2025-02">February 2025</time>
               </p>
             </li>
-            <li class="mb-2">
+            <li>
               <p>Full-stack Developer at Whitesmith</p>
-              <p class="text-sm text-gray-600">
+              <p class="caption">
                 <time datetime="2016-07">July 2016</time> –
                 <time datetime="2024-12">December 2024</time>
               </p>
             </li>
-            <li class="mb-2">
+            <li>
               <p>Frontend Developer at ScienceMatters</p>
-              <p class="text-sm text-gray-600">
+              <p class="caption">
                 <time datetime="2015-08">August 2015</time> –
                 <time datetime="2016-04">April 2016</time>
               </p>
             </li>
-            <li class="mb-2">
+            <li>
               <p>Backend Developer at IPN</p>
-              <p class="text-sm text-gray-600">
+              <p class="caption">
                 <time datetime="2011-01">January 2011</time> –
                 <time datetime="2015-07">July 2015</time>
               </p>
