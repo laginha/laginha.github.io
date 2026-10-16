@@ -138,9 +138,9 @@ export const TOPICS: TopicItem[] = [
       <Topic tags={['django', 'keystone', 'supabase']}>
         <p>
           Early in my career I spent some time on the backend with Django and
-          Rails. These days I lean on headless CMSs solutions and BaaS
-          platforms, which keep my focus where I enjoy it most: user experience
-          and the frontend.
+          Rails. These days I lean on headless CMS solutions and BaaS platforms,
+          which keep my focus where I enjoy it most: user experience and the
+          frontend.
         </p>
       </Topic>
     )
@@ -183,9 +183,8 @@ export const TOPICS: TopicItem[] = [
     content: (
       <Topic tags={['agents', 'anthropic', 'cursor']}>
         <p>
-          I find that integrating AI tools like Cursor and Claude Code, has
-          significantly transformed my development workflow and are now a core
-          part of how I work.
+          Integrating AI tools like Cursor and Claude Code has transformed my
+          workflow, and they're now a core part of how I work.
         </p>
         <ul className="bullet-list">
           <li>Orchestrate heavy tasks between multiple agents.</li>
