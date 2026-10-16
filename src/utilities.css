@@ -1,0 +1,3 @@
+@utility bullet-list {
+  @apply list-disc pl-5 space-y-2;
+}

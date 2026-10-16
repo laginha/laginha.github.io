@@ -10,7 +10,7 @@ interface ProjectProps {
 
 function Project({ jobTitle, href, children }: ProjectProps) {
   return (
-    <li className="bullet">
+    <li>
       <p>
         {jobTitle} at <Link href={href}>{href}</Link>
       </p>

@@ -26,11 +26,10 @@ export const TOPICS: TopicItem[] = [
     content: (
       <Topic tags={['family', 'toddler', 'proud', 'love']}>
         <p>
-          I'm a doting father to a spirited 2-year-old girl who fought to
+          I'm a doting father to a spirited 3-year-old girl who fought to
           survive a difficult childbirth and continues to battle to this day
-          against changing diapers and eating soap. I strive to spend as much
-          time with her as possible while balancing work and life, which is
-          often challenging.
+          against eating soup. I strive to spend as much time with her as
+          possible while balancing work and life, which is often challenging.
         </p>
         <p>
           I am determined not to repeat my parents' mistakes — I'll make new
@@ -145,10 +144,10 @@ export const TOPICS: TopicItem[] = [
           advantages while building MVPs and multi-platform products.
         </p>
         <p>
-          More recently, I've adopted JAMstack architectures and embraced
-          headless CMS solutions like Keystone, as well as BaaS platforms such
-          as Supabase. This shift has allowed me to focus more on user
-          experience and application logic — no more dreadful backend work.
+          Later, I've adopted JAMstack architectures and embraced headless CMS
+          solutions like Keystone, as well as BaaS platforms such as Supabase.
+          This shift has allowed me to focus more on user experience and
+          application logic — no more dreadful backend work.
         </p>
       </Topic>
     )
@@ -166,7 +165,7 @@ export const TOPICS: TopicItem[] = [
           understand business goals through Discoveries and translate use cases
           into technical roadmaps.
         </p>
-        <ul>
+        <ul className="bullet-list">
           <Project jobTitle="Tech lead" href="https://wageforwork.com">
             rethink the user experience and improve the overall code quality and
             robustness
@@ -195,13 +194,13 @@ export const TOPICS: TopicItem[] = [
           Cursor, powered by ChatGPT and Anthropic models, has significantly
           transformed my development workflow.
         </p>
-        <ul>
-          <li className="bullet">Set up development environments.</li>
-          <li className="bullet">Improve code quality and robustness.</li>
-          <li className="bullet">Write useful documentation.</li>
-          <li className="bullet">Automate repetitive tasks.</li>
-          <li className="bullet">Outline components with a given mockup.</li>
-          <li className="bullet">
+        <ul className="bullet-list">
+          <li>Set up development environments.</li>
+          <li>Improve code quality and robustness.</li>
+          <li>Write useful documentation.</li>
+          <li>Automate repetitive tasks.</li>
+          <li>Outline components with a given mockup.</li>
+          <li>
             Gain insights into different approaches to challenging problems.
           </li>
         </ul>

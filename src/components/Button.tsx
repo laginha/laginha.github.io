@@ -7,7 +7,7 @@ function Button({ className, ...props }: ComponentProps<'button'>) {
     <button
       type="button"
       className={cn(
-        'border border-solid border-gray-200 bg-white text-gray-500 p-2 cursor-pointer hover:bg-gray-100 hover:border-white uppercase',
+        'border border-solid border-gray-200 bg-white text-gray-600 p-2 cursor-pointer hover:bg-gray-100 hover:border-white uppercase',
         className
       )}
       {...props}

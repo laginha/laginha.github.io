@@ -21,32 +21,34 @@
       class="flex flex-col justify-between h-svh md:h-full w-full md:w-3/4 lg:w-1/2 pt-4 md:p-8 bg-white rounded-lg shadow-md"
     >
       <div>
-        <section
+        <header
           class="flex flex-col md:flex-row justify-center items-center mb-6"
         >
           <img
             class="w-20 h-20 rounded-full md:mr-4"
             src="%VITE_AVATAR_URL%"
-            alt="Diogo Laginha"
+            alt=""
           />
           <div>
             <h1 class="text-2xl font-bold">Diogo Laginha</h1>
             <p class="text-gray-600">Frontend engineer</p>
             <p class="text-sm text-gray-500">Master's in Computer Science</p>
           </div>
-        </section>
+        </header>
 
-        <div id="root"></div>
+        <main>
+          <div id="root"></div>
 
-        <div class="italic my-8 text-gray-500">
-          <p>Life is like a puzzle not pieced yet</p>
-          <p>Might take a village elder long to see that</p>
-        </div>
+          <blockquote class="italic my-8 text-gray-500">
+            Life is like a puzzle not pieced yet<br />
+            Might take a village elder long to see that
+          </blockquote>
+        </main>
       </div>
 
-      <div class="text-gray-500 text-right px-2">
+      <footer class="text-gray-500 text-right px-2">
         made with React and Tailwind
-      </div>
+      </footer>
     </div>
     <script type="module" src="/src/index.tsx"></script>
   </body>

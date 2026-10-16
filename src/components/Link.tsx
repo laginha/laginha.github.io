@@ -11,6 +11,7 @@ function Link({ className, children, ...props }: ComponentProps<'a'>) {
       {...props}
     >
       {children}
+      <span className="sr-only"> (opens in new tab)</span>
     </a>
   )
 }

@@ -1,16 +1,13 @@
 @import 'tailwindcss' source(none);
 @source '../index.html';
 @source '.';
+@import './utilities.css';
 
 @layer base {
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-}
-
-@utility bullet {
-  @apply mt-2 ml-4 list-disc;
 }
 
 :root {
