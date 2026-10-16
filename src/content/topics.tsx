@@ -135,19 +135,12 @@ export const TOPICS: TopicItem[] = [
     title: 'Backend background',
     icon: databaseIcon,
     content: (
-      <Topic tags={['supabase', 'keystone', 'proficient']}>
+      <Topic tags={['django', 'keystone', 'supabase']}>
         <p>
-          A younger version of myself was deeply involved in backend
-          development, starting as a Python/Django enthusiast before being drawn
-          into a Rails environment. I was passionate about data modeling and
-          designing RESTful APIs, but developed a preference for GraphQL's
-          advantages while building MVPs and multi-platform products.
-        </p>
-        <p>
-          Later, I've adopted JAMstack architectures and embraced headless CMS
-          solutions like Keystone, as well as BaaS platforms such as Supabase.
-          This shift has allowed me to focus more on user experience and
-          application logic — no more dreadful backend work.
+          Early in my career I spent some time on the backend with Django and
+          Rails. These days I lean on headless CMSs solutions and BaaS
+          platforms, which keep my focus where I enjoy it most: user experience
+          and the frontend.
         </p>
       </Topic>
     )
@@ -156,7 +149,7 @@ export const TOPICS: TopicItem[] = [
     title: 'Projects',
     icon: rocketIcon,
     content: (
-      <Topic tags={['w.a.g.e.', 'mishe', 'createacademy', 'lexacon']}>
+      <Topic tags={['w.a.g.e.', 'mishe', 'createacademy']}>
         <p>
           In 2016, I joined{' '}
           <Link href="https://www.whitesmith.co/">Whitesmith</Link> where I was
@@ -188,25 +181,22 @@ export const TOPICS: TopicItem[] = [
     title: 'AI enabled',
     icon: aiIcon,
     content: (
-      <Topic tags={['chat-gpt', 'anthropic', 'cursor']}>
+      <Topic tags={['agents', 'anthropic', 'cursor']}>
         <p>
-          Although initially hesitant, I found that integrating AI tools like
-          Cursor, powered by ChatGPT and Anthropic models, has significantly
-          transformed my development workflow.
+          I find that integrating AI tools like Cursor and Claude Code, has
+          significantly transformed my development workflow and are now a core
+          part of how I work.
         </p>
         <ul className="bullet-list">
-          <li>Set up development environments.</li>
-          <li>Improve code quality and robustness.</li>
-          <li>Write useful documentation.</li>
-          <li>Automate repetitive tasks.</li>
-          <li>Outline components with a given mockup.</li>
-          <li>
-            Gain insights into different approaches to challenging problems.
-          </li>
+          <li>Orchestrate heavy tasks between multiple agents.</li>
+          <li>Turn mockups and specs into functional components.</li>
+          <li>Review and improve code quality / robustness.</li>
+          <li>Explore alternative approaches to challenging problems.</li>
         </ul>
         <p>
           I'm committed to continuing to leverage AI to enhance productivity and
-          streamline tasks — hoping one day to be fully emancipated.
+          streamline tasks — hoping it eventually emancipates me enough to spend
+          more time with my kid.
         </p>
       </Topic>
     )
