@@ -14,21 +14,16 @@
 }
 
 @layer components {
-  /* --grid (tiles per row/column) is set inline by Puzzle from GRID_SIZE */
   .puzzle {
     --puzzle: calc(var(--tile) * var(--grid));
   }
   .tile {
-    left: 0;
-    top: 0;
     transform: translate(
       calc(var(--current-column) * var(--tile)),
       calc(var(--current-row) * var(--tile))
     );
     background-image: url('https://avatars.githubusercontent.com/u/25960');
     background-size: var(--puzzle);
-    /* With background-size equal to the puzzle, 0%..100% spans the grid's first
-     to last column, so each step is 100% / (grid - 1) */
     background-position: calc(var(--home-column) * 100% / (var(--grid) - 1))
       calc(var(--home-row) * 100% / (var(--grid) - 1));
     background-repeat: no-repeat;
@@ -39,7 +34,6 @@
     }
   }
   .empty {
-    transition: background-image 0.2s;
     background-image: var(--icon);
     background-position: center;
     background-size: calc(var(--tile) - 0.1rem);

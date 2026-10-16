@@ -1,15 +1,12 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 
-import { GRID_SIZE } from './constants'
-import { type Board, puzzleReducer } from './puzzle'
+import { createBoard, puzzleReducer } from './puzzle'
 
 const SHUFFLE_MOVES = 7
 const SHUFFLE_INTERVAL_MS = 400
 
-const INITIAL_BOARD: Board = [...Array(GRID_SIZE ** 2).keys()]
-
-export function usePuzzle() {
-  const [board, dispatch] = useReducer(puzzleReducer, INITIAL_BOARD)
+export function usePuzzle(tileCount: number) {
+  const [board, dispatch] = useReducer(puzzleReducer, tileCount, createBoard)
   const shuffleTimer = useRef<ReturnType<typeof setInterval>>(undefined)
 
   const stopShuffle = useCallback(() => {
@@ -22,7 +19,7 @@ export function usePuzzle() {
 
     let movesLeft = SHUFFLE_MOVES
     shuffleTimer.current = setInterval(() => {
-      dispatch({ type: 'shuffleStep' })
+      dispatch({ type: 'shuffleStep', random: Math.random() })
       if (--movesLeft === 0) stopShuffle()
     }, SHUFFLE_INTERVAL_MS)
   }, [stopShuffle])

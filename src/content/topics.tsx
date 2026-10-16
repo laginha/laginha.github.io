@@ -1,6 +1,7 @@
-import type { ComponentProps, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 import Link from '@/components/Link'
+import { ListItem, Project, Topic } from '@/components/Topic'
 import aiIcon from '@/icons/ai.svg'
 import databaseIcon from '@/icons/database.svg'
 import familyIcon from '@/icons/family.svg'
@@ -10,52 +11,6 @@ import snookerIcon from '@/icons/snooker.svg'
 import tailwindIcon from '@/icons/tailwind.svg'
 import teamIcon from '@/icons/team.svg'
 import typescriptIcon from '@/icons/typescript.svg'
-import { cn } from '@/utils/cn'
-
-interface TopicProps extends ComponentProps<'div'> {
-  tags: string[]
-}
-
-function Topic({ tags, children, className, ...props }: TopicProps) {
-  return (
-    <div className={cn('flex flex-col gap-4 text-left', className)} {...props}>
-      {children}
-      <ul className="text-blue-600 flex flex-wrap gap-x-2 justify-end">
-        {tags.map((tag) => (
-          <li key={tag}>#{tag}</li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-interface ProjectProps {
-  jobTitle: string
-  href: string
-  children: ReactNode
-}
-
-function Project({ jobTitle, href, children }: ProjectProps) {
-  return (
-    <ListItem>
-      <p>
-        {jobTitle} at <Link href={href}>{href}</Link>
-      </p>
-      <p className="text-sm text-gray-600">{children}</p>
-    </ListItem>
-  )
-}
-
-function ListItem({ children }: { children: ReactNode }) {
-  return (
-    <li className="flex mt-2">
-      <span className="mr-2" aria-hidden="true">
-        •
-      </span>
-      <div>{children}</div>
-    </li>
-  )
-}
 
 export interface TopicItem {
   title: string
@@ -63,7 +18,7 @@ export interface TopicItem {
   content: ReactNode
 }
 
-const TOPIC_LIST: TopicItem[] = [
+export const TOPICS: TopicItem[] = [
   {
     title: 'Parenting',
     icon: familyIcon,
@@ -257,5 +212,3 @@ const TOPIC_LIST: TopicItem[] = [
     )
   }
 ]
-
-export default TOPIC_LIST

@@ -11,7 +11,7 @@ function Tile({ isEmpty, className, ...props }: TileProps) {
     <button
       type="button"
       className={cn(
-        'tile absolute size-(--tile) border border-white flex cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-black',
+        'tile absolute left-0 top-0 size-(--tile) border border-white flex cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-black',
         isEmpty ? 'empty z-10' : 'z-20',
         className
       )}

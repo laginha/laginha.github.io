@@ -8,27 +8,38 @@ import {
 import Tile from '@/components/Tile'
 import { isArrowKey, tileForArrowKey } from '@/utils/arrowKeys'
 import { cn } from '@/utils/cn'
-import { GRID_SIZE } from '@/utils/constants'
-import { type Board, EMPTY_TILE_HOME_SLOT } from '@/utils/puzzle'
+import {
+  type Board,
+  EMPTY_TILE_HOME_SLOT,
+  gridSize,
+  toCoords
+} from '@/utils/puzzle'
 
 interface PuzzleProps extends ComponentProps<'div'> {
   board: Board
-  icons: string[]
+  topics: { icon: string; title: string }[]
   onSlide: (homeSlot: number) => void
   onEmptyTileClick?: (currentSlot: number) => void
 }
 
-const tileStyle = (homeSlot: number, currentSlot: number) =>
-  ({
-    '--current-column': currentSlot % GRID_SIZE,
-    '--current-row': Math.floor(currentSlot / GRID_SIZE),
-    '--home-column': homeSlot % GRID_SIZE,
-    '--home-row': Math.floor(homeSlot / GRID_SIZE)
-  }) as CSSProperties
+const tileStyle = (
+  homeSlot: number,
+  currentSlot: number,
+  size: number
+): CSSProperties => {
+  const current = toCoords(currentSlot, size)
+  const home = toCoords(homeSlot, size)
+  return {
+    '--current-column': current.column,
+    '--current-row': current.row,
+    '--home-column': home.column,
+    '--home-row': home.row
+  }
+}
 
 function Puzzle({
   board,
-  icons,
+  topics,
   onSlide,
   onEmptyTileClick,
   className,
@@ -36,6 +47,7 @@ function Puzzle({
   ...props
 }: PuzzleProps) {
   const instructionsId = useId()
+  const size = gridSize(board)
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (!isArrowKey(e.key)) return
@@ -51,23 +63,26 @@ function Puzzle({
       aria-describedby={instructionsId}
       onKeyDown={onKeyDown}
       className={cn('puzzle relative size-(--puzzle)', className)}
-      style={{ '--grid': GRID_SIZE, ...style } as CSSProperties}
+      style={{ '--grid': size, ...style }}
       {...props}
     >
       {board.map((currentSlot, homeSlot) => {
         const isEmpty = homeSlot === EMPTY_TILE_HOME_SLOT
-        const icon = icons[currentSlot]
+        const topic = topics[currentSlot]
+        const icon = topic?.icon
         return (
           <Tile
             key={homeSlot}
             isEmpty={isEmpty}
-            style={
-              {
-                ...tileStyle(homeSlot, currentSlot),
-                ...(isEmpty &&
-                  icon && { '--icon': `url(${JSON.stringify(icon)})` })
-              } as CSSProperties
+            aria-label={
+              isEmpty ? `Open: ${topic?.title ?? ''}` : `Piece ${homeSlot}`
             }
+            tabIndex={isEmpty ? 0 : -1}
+            style={{
+              ...tileStyle(homeSlot, currentSlot, size),
+              ...(isEmpty &&
+                icon && { '--icon': `url(${JSON.stringify(icon)})` })
+            }}
             onClick={() =>
               isEmpty ? onEmptyTileClick?.(currentSlot) : onSlide(homeSlot)
             }
