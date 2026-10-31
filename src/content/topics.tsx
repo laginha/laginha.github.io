@@ -32,7 +32,7 @@ export const TOPICS: TopicItem[] = [
           possible while balancing work and life, which is often challenging.
         </p>
         <p>
-          I am determined not to repeat my parents' mistakes — I'll make new
+          I am determined not to repeat my parents' mistakes - I'll make new
           ones.
         </p>
       </Topic>
@@ -51,7 +51,7 @@ export const TOPICS: TopicItem[] = [
         <p>
           It was only recently that I've discovered a passion for English
           Snooker. Playing on the 12-foot table, I find myself fully immersed in
-          the moment, away from daily anxieties — until I miss an easy shot.
+          the moment, away from daily anxieties - until I miss an easy shot.
         </p>
       </Topic>
     )
@@ -68,7 +68,7 @@ export const TOPICS: TopicItem[] = [
         </p>
         <p>
           I enjoy leading teams using Scrum and Kanban software development
-          methodologies, but those are the only things agile about me — I have
+          methodologies, but those are the only things agile about me - I have
           the body of a nonagenarian.
         </p>
       </Topic>
@@ -88,7 +88,7 @@ export const TOPICS: TopicItem[] = [
           As I delved deeper into frontend, I grew proficient in React and
           well-versed in Next.js framework, confidently building quality
           products. With several years of experience to my name, this is where I
-          vercel — pun intended.
+          vercel - pun intended.
         </p>
       </Topic>
     )
@@ -99,34 +99,32 @@ export const TOPICS: TopicItem[] = [
     content: (
       <Topic tags={['frontend', 'typescript', 'proficient']}>
         <p>
-          When I first encountered TypeScript, I was skeptical about its
-          benefits. Having grown accustomed to the flexibility of JavaScript,
-          the idea of adding static typing seemed like an unnecessary
-          complication that would slow me down.
-        </p>
-        <p>
           As I gradually integrated TypeScript into my workflow, I began to
           appreciate its ability to bring robustness and reliability to my
-          codebase — giving me more time to enjoy anything but debugging.
+          codebase.
+        </p>
+        <p>
+          It debunked any misconception I had about static typing being an
+          unnecessary complication that would slow me down. On the contrary, it
+          gives me more time to enjoy anything but debugging.
         </p>
       </Topic>
     )
   },
   {
-    title: 'CSS',
+    title: 'Tailwind',
     icon: tailwindIcon,
     content: (
       <Topic tags={['frontend', 'tailwind', 'novice']}>
+        <p>Flexbox and CSS Grid got me into CSS, and Tailwind made me stay.</p>
         <p>
-          My initial mistrust kept me away from doing CSS for quite some time.
-          However, my perspective began to shift when I was introduced to
-          Flexbox and later to CSS Grid. Their intuitive design and
-          implementation drew me in and encouraged me to give them a try.
+          Styling right next to the markup keeps me focused, and its theme
+          config has helped me create and maintain a reusable design system that
+          scales across products.
         </p>
         <p>
-          Nowadays, I have a deeper understanding of CSS and I am comfortable
-          navigating it. I look forward to finding opportunities to continue to
-          flex-grow in this field.
+          I look forward to finding opportunities to continue to flex-grow in
+          this field.
         </p>
       </Topic>
     )
@@ -149,15 +147,13 @@ export const TOPICS: TopicItem[] = [
     title: 'Projects',
     icon: rocketIcon,
     content: (
-      <Topic tags={['w.a.g.e.', 'mishe', 'createacademy']}>
+      <Topic tags={['eneida', 'w.a.g.e.', 'mishe']}>
         <p>
-          In 2016, I joined{' '}
-          <Link href="https://www.whitesmith.co/">Whitesmith</Link> where I was
-          able to contribute to exciting products with a strong focus on quality
-          and innovation from its start to finish. I sharpened my ability to
-          understand business goals through Discoveries and translate use cases
-          into technical roadmaps.
+          Since early 2025, I've been the frontend lead at{' '}
+          <Link href="https://eneida.io/">Eneida</Link>, where I mentor the
+          team, define its coding standards and own the architecture.
         </p>
+        <p>Before that, I led products such as:</p>
         <ul className="bullet-list">
           <Project jobTitle="Tech lead" href="https://wageforwork.com">
             rethink the user experience and improve the overall code quality and
@@ -165,13 +161,6 @@ export const TOPICS: TopicItem[] = [
           </Project>
           <Project jobTitle="Tech lead" href="https://mishe.co/">
             develop the product from scratch on top of coding best practices
-          </Project>
-          <Project
-            jobTitle="Full-stack developer"
-            href="https://createacademy.com/"
-          >
-            re-build the application with special focus on scalability and
-            availability
           </Project>
         </ul>
       </Topic>
@@ -193,9 +182,9 @@ export const TOPICS: TopicItem[] = [
           <li>Explore alternative approaches to challenging problems.</li>
         </ul>
         <p>
-          I'm committed to continuing to leverage AI to enhance productivity and
-          streamline tasks — hoping it eventually emancipates me enough to spend
-          more time with my kid.
+          I'm committed to leveraging AI for productivity and streamlined
+          repetitive tasks - secretly hoping it buys me time to build LEGO (for
+          my kid, obviously. *cough*)
         </p>
       </Topic>
     )
