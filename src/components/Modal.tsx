@@ -49,7 +49,7 @@ function Modal({ isOpen, onClose, title, children }: ModalProps) {
             type="button"
             aria-label="Close"
             onClick={close}
-            className="justify-self-end text-gray-500 hover:text-gray-700 cursor-pointer"
+            className="justify-self-end text-zinc-500 hover:text-zinc-700 cursor-pointer"
           >
             <CloseIcon className="w-5 h-5" aria-hidden="true" />
           </button>

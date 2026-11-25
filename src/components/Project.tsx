@@ -14,7 +14,7 @@ function Project({ jobTitle, href, children }: ProjectProps) {
       <p>
         {jobTitle} at <Link href={href}>{href}</Link>
       </p>
-      <p className="text-sm text-gray-600">{children}</p>
+      <p className="text-sm text-zinc-600">{children}</p>
     </li>
   )
 }
