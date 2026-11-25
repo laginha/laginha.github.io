@@ -21,3 +21,80 @@
 @utility caption {
   @apply text-sm text-zinc-600;
 }
+
+@utility skills-table {
+  @apply w-full border-collapse text-sm;
+
+  & th {
+    @apply w-34 py-0.5 text-left align-baseline font-medium;
+  }
+
+  & td {
+    @apply py-0.5 align-baseline;
+  }
+
+  & td:last-child {
+    @apply text-zinc-600;
+  }
+
+  & .years {
+    @apply w-14 pr-5 pl-1.5 text-right font-semibold whitespace-nowrap tabular-nums;
+  }
+
+  & .leader {
+    @apply flex items-baseline gap-1.5 after:flex-1 after:border-b after:border-dotted after:border-zinc-400;
+  }
+
+  & .spaced > * {
+    @apply pt-3;
+  }
+}
+
+@utility projects-table {
+  @apply w-full border-collapse text-sm;
+
+  & th,
+  & td {
+    @apply border-t border-zinc-200 py-2 text-left align-baseline;
+  }
+
+  & tr:last-child > * {
+    @apply border-b;
+  }
+
+  & th {
+    @apply w-49 pr-3 font-medium;
+  }
+
+  & th span {
+    @apply block font-normal text-zinc-500;
+  }
+
+  & td {
+    @apply text-zinc-600;
+  }
+
+  & .stack {
+    @apply mt-0.5 text-zinc-500;
+  }
+}
+
+@page {
+  margin: 1.5cm;
+}
+
+@media print {
+  html {
+    font-size: 15px;
+  }
+
+  li li,
+  tr,
+  dl > div {
+    break-inside: avoid;
+  }
+
+  h2 {
+    break-after: avoid;
+  }
+}

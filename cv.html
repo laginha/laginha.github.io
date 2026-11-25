@@ -19,9 +19,11 @@
     <title>Curriculum Vitae - Diogo Laginha de Sousa Machado</title>
     <link rel="stylesheet" href="/src/cv.css" />
   </head>
-  <body class="bg-zinc-100 text-base container mx-auto flex justify-center">
+  <body
+    class="bg-zinc-100 text-base container mx-auto flex justify-center print:bg-white print:max-w-none"
+  >
     <div
-      class="w-full md:w-3/4 lg:w-1/2 bg-white rounded-lg shadow-md p-4 md:p-8"
+      class="w-full md:w-3/4 lg:w-1/2 bg-white rounded-lg shadow-md p-4 md:p-8 print:w-full print:shadow-none print:rounded-none print:p-0"
     >
       <header class="section flex items-center">
         <img
@@ -31,12 +33,19 @@
         />
         <div>
           <h1 class="text-2xl font-bold">Diogo Laginha</h1>
-          <p class="text-zinc-600">Frontend engineer</p>
-          <p class="text-sm text-zinc-500">Master's in Computer Science</p>
+          <p class="text-zinc-600">Frontend lead with full-stack experience</p>
+          <p class="text-sm text-zinc-500">Master's in Software Engineering</p>
         </div>
+        <button
+          type="button"
+          class="link ml-auto self-start text-sm cursor-pointer print:hidden"
+          onclick="window.print()"
+        >
+          Save as PDF
+        </button>
       </header>
 
-      <main>
+      <main class="flex flex-col gap-2">
         <section class="section">
           <h2 class="section-title">Contact</h2>
           <dl class="stack">
@@ -45,6 +54,14 @@
               <dd>
                 <a href="https://laginha.github.io/" class="link"
                   >https://laginha.github.io/</a
+                >
+              </dd>
+            </div>
+            <div class="box">
+              <dt>GitHub:</dt>
+              <dd>
+                <a href="https://github.com/laginha" class="link"
+                  >https://github.com/laginha</a
                 >
               </dd>
             </div>
@@ -67,163 +84,117 @@
           <h2 class="section-title">Summary</h2>
           <div class="stack">
             <p>
-              Enjoys mentoring and leading teams, with a passion for new
-              technologies and eagerness to apply fresh knowledge on promising
-              and interesting products.
-            </p>
-            <p>
-              Hopes to continue a journey of self-improvement and empowerment
-              via AI, while keeping time for hobbies and family.
+              Frontend lead with 15 years in software and a full-stack
+              background. At Eneida, I lead the frontend team of DeepGrid,
+              moving it to Next.js, rebuilding its design system and bringing in
+              AI-assisted engineering.
             </p>
           </div>
-        </section>
-
-        <section class="section">
-          <h2 class="section-title">About me</h2>
-          <div class="stack">
-            <p>
-              I come from a backend development background, but I soon felt
-              drawn to the JavaScript ecosystem. Hence I followed my work
-              interest in user experience to become a full-stack developer, keen
-              on tackling frontend challenges using my expertise in the latest
-              frameworks like Next.js.
-            </p>
-            <p>
-              In 2016, I joined Whitesmith where I was able to contribute to
-              exciting products with a strong focus on quality and innovation
-              from its start to finish. I sharpened my ability to understand
-              business goals through Discoveries and translate use cases into
-              technical roadmaps.
-            </p>
-            <ul class="bullet-list">
-              <li>
-                <div>
-                  <p>
-                    Tech lead at
-                    <a class="link" href="https://wageforwork.com"
-                      >https://wageforwork.com</a
-                    >
-                  </p>
-                  <p class="caption">
-                    rethink the user experience and improve the overall code
-                    quality and robustness
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p>
-                    Tech lead at
-                    <a class="link" href="https://mishe.co/"
-                      >https://mishe.co/</a
-                    >
-                  </p>
-                  <p class="caption">
-                    develop the product from scratch on top of coding best
-                    practices
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <p>
-                    Full-stack developer at
-                    <a class="link" href="https://www.createacademy.com/"
-                      >https://www.createacademy.com/</a
-                    >
-                  </p>
-                  <p class="caption">
-                    re-build the application with special focus on scalability
-                    and availability
-                  </p>
-                </div>
-              </li>
-            </ul>
-            <p>
-              As I went deeper into frontend development, I grew proficient in
-              React and well versed in other tools like TypeScript and Vue.
-              Without a doubt, JavaScript became an important part of my life,
-              one that I'm enthusiastic about and defines me as a developer.
-            </p>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2 class="section-title">Skillset</h2>
-          <ul class="bullet-list">
-            <li>
-              React
-              <span class="caption">9 years of experience</span>
-            </li>
-            <li>
-              Next
-              <span class="caption">4 years of experience</span>
-            </li>
-            <li>
-              Vue
-              <span class="caption">5 years of experience</span>
-            </li>
-            <li>
-              TypeScript
-              <span class="caption">4 years of experience</span>
-            </li>
-            <li>
-              GraphQL
-              <span class="caption">3 years of experience</span>
-            </li>
-            <li>
-              Keystone.js
-              <span class="caption">3 years of experience</span>
-            </li>
-            <li>
-              State management
-              <span class="caption">Zustand, Redux</span>
-            </li>
-            <li>
-              Design systems
-              <span class="caption">reusable component libraries</span>
-            </li>
-            <li>
-              Performance
-              <span class="caption">profiling and rendering optimization</span>
-            </li>
-            <li>
-              AI tooling
-              <span class="caption"
-                >Claude Code, Cursor, multi-agent workflows</span
-              >
-            </li>
-          </ul>
         </section>
 
         <section class="section">
           <h2 class="section-title">Experience</h2>
-          <ul class="space-y-2">
+          <ul class="space-y-5">
             <li>
-              <p>Frontend lead at Eneida</p>
+              <p>
+                Frontend Lead at
+                <a class="link" href="https://eneida.io/">Eneida</a>
+              </p>
               <p class="caption">
                 <time datetime="2025-02">February 2025</time> – present
               </p>
+              <p class="caption mt-2">
+                Eneida builds DeepGrid, a platform energy distributors use to
+                monitor low-voltage grids.
+              </p>
               <ul class="bullet-list mt-2 caption">
                 <li>
-                  Lead the frontend team through mentoring and set the team's
-                  coding standards
+                  Lead a frontend team of up to four, with a strong focus on
+                  coding standards and best practices.
                 </li>
                 <li>
-                  Own the frontend architecture and its technical decisions
+                  Led the incremental migration from a legacy React app to
+                  Next.js, moving one screen at a time behind feature flags,
+                  with no disruption to users.
                 </li>
-                <li>Build product features hands-on with TypeScript</li>
                 <li>
-                  Work with product, design and backend teams to shape the
-                  roadmap
+                  Introduced AI-assisted development and set up tailor-made
+                  agents and skills.
+                </li>
+                <li>
+                  Rebuilt the design system on shadcn/ui and Tailwind, splitting
+                  the work across the team.
+                </li>
+                <li>
+                  Built a charting suite that replaced slow-loading graphs and
+                  an outdated user experience.
+                </li>
+                <li>
+                  Wrote in-house TypeScript libraries, including fine-grained
+                  URL state management.
                 </li>
               </ul>
             </li>
             <li>
-              <p>Full-stack Developer at Whitesmith</p>
+              <p>Full-stack Developer and Tech Lead at Whitesmith</p>
               <p class="caption">
                 <time datetime="2016-07">July 2016</time> –
                 <time datetime="2024-12">December 2024</time>
+              </p>
+              <p class="caption mt-2">
+                Whitesmith builds software for clients from Coimbra and London,
+                with around 80 projects for 60 organisations since 2012.
+              </p>
+              <table class="projects-table mt-2">
+                <tbody>
+                  <tr>
+                    <th>W.A.G.E.<span>Tech lead</span></th>
+                    <td>
+                      <p>
+                        Rethought the user experience and improved the overall
+                        code quality and robustness.
+                      </p>
+                      <p class="stack">
+                        Keystone.js, TypeScript, Next.js ·
+                        <a class="link" href="https://wageforwork.com"
+                          >wageforwork.com</a
+                        >
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Mishe<span>Tech lead</span></th>
+                    <td>
+                      <p>
+                        Developed the product from scratch on top of coding best
+                        practices.
+                      </p>
+                      <p class="stack">
+                        React, Cypress, Firebase ·
+                        <a class="link" href="https://mishe.co/">mishe.co</a>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Create Academy<span>Full-stack developer</span></th>
+                    <td>
+                      <p>
+                        Rebuilt the application with a focus on scalability and
+                        availability.
+                      </p>
+                      <p class="stack">
+                        Vue.js, Rails ·
+                        <a class="link" href="https://www.createacademy.com/"
+                          >createacademy.com</a
+                        >
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="caption mt-3">
+                Across projects: understood business goals through product
+                discoveries and translated use cases into technical roadmaps.
               </p>
             </li>
             <li>
@@ -232,19 +203,133 @@
                 <time datetime="2015-08">August 2015</time> –
                 <time datetime="2016-04">April 2016</time>
               </p>
+              <p class="caption mt-2">
+                ScienceMatters was an open-access platform for publishing single
+                scientific observations.
+              </p>
             </li>
             <li>
-              <p>Backend Developer at IPN</p>
+              <p>Backend Developer at Instituto Pedro Nunes (IPN)</p>
               <p class="caption">
                 <time datetime="2011-01">January 2011</time> –
                 <time datetime="2015-07">July 2015</time>
               </p>
+              <p class="caption mt-2">
+                Built Python/Django backends, from data modelling to RESTful
+                APIs.
+              </p>
             </li>
           </ul>
         </section>
+
+        <section class="section">
+          <h2 class="section-title">Skillset</h2>
+          <table class="skills-table">
+            <tbody>
+              <tr>
+                <th><span class="leader">React</span></th>
+                <td class="years">9 years</td>
+                <td>Server Components, Suspense, concurrent rendering</td>
+              </tr>
+              <tr>
+                <th><span class="leader">TypeScript</span></th>
+                <td class="years">4 years</td>
+                <td>generics, mapped types, Zod schema inference</td>
+              </tr>
+              <tr>
+                <th><span class="leader">Next.js</span></th>
+                <td class="years">4 years</td>
+                <td>App Router, Server Actions, caching, i18n</td>
+              </tr>
+              <tr>
+                <th><span class="leader">Vue</span></th>
+                <td class="years">4 years</td>
+                <td>two-way binding, single-file components</td>
+              </tr>
+              <tr class="spaced">
+                <th>AI-assisted</th>
+                <td class="years"></td>
+                <td>
+                  Claude Code agents and skills, Cursor, multi-agent workflows
+                </td>
+              </tr>
+              <tr>
+                <th>Architecture</th>
+                <td class="years"></td>
+                <td>Jamstack, monorepos, Redux, Zustand, SWR</td>
+              </tr>
+              <tr>
+                <th>Design systems</th>
+                <td class="years"></td>
+                <td>shadcn/ui, Radix, Tailwind CSS, Storybook</td>
+              </tr>
+              <tr>
+                <th>Accessibility</th>
+                <td class="years"></td>
+                <td>WCAG 2.2 AA, semantic HTML, ARIA, keyboard navigation</td>
+              </tr>
+              <tr>
+                <th>Quality</th>
+                <td class="years"></td>
+                <td>
+                  Vitest, Testing Library, Playwright, Cypress, Chromatic,
+                  Sentry, Mixpanel
+                </td>
+              </tr>
+              <tr>
+                <th>Data visualisation</th>
+                <td class="years"></td>
+                <td>ECharts, time series, Leaflet maps</td>
+              </tr>
+              <tr>
+                <th>Backend</th>
+                <td class="years"></td>
+                <td>
+                  Node.js, Keystone.js, GraphQL, RESTful API design, Rails,
+                  Django, BaaS
+                </td>
+              </tr>
+              <tr class="spaced">
+                <th>Soft skills</th>
+                <td class="years"></td>
+                <td>
+                  leading small teams, mentoring, code review, technical spikes,
+                  Scrum and Kanban methodologies, product discovery
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Education</h2>
+          <ul class="space-y-2">
+            <li>
+              <p>Master's in Software Engineering at Universidade de Coimbra</p>
+              <p class="caption">
+                <time datetime="2016">2016</time> –
+                <time datetime="2021">2021</time>
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Languages</h2>
+          <dl class="stack">
+            <div class="box">
+              <dt>Portuguese:</dt>
+              <dd class="text-zinc-600">Native</dd>
+            </div>
+            <div class="box">
+              <dt>English:</dt>
+              <dd class="text-zinc-600">C1 Advanced (Cambridge CAE)</dd>
+            </div>
+          </dl>
+        </section>
       </main>
 
-      <footer class="flex justify-end text-xs text-zinc-500">
+      <footer class="flex justify-end text-xs text-zinc-500 print:hidden">
         made with Tailwind CSS
       </footer>
     </div>
