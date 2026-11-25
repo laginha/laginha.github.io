@@ -16,10 +16,16 @@ function App() {
 
   return (
     <div className="flex flex-col gap-6 items-center mx-auto w-min">
-      <p className="text-left text-zinc-600">
-        Move the tiles (click them or use the arrow keys) until the picture is
-        positioned correctly and click on the empty square to find more about me
-        or simply go to my <Link href="/cv.html">CV</Link>
+      <p className="text-zinc-600 flex flex-col gap-2 text-left">
+        <span>
+          Move the tiles (click them or use the arrow keys) until the picture is
+          positioned correctly and click on the empty square to find more about
+          me.
+        </span>
+        <span>
+          Short on time? Pick a topic below or go to my{' '}
+          <Link href="/cv.html">CV</Link>
+        </span>
       </p>
       <Puzzle
         board={puzzle.board}
@@ -30,6 +36,21 @@ function App() {
       <Button className="w-full" onClick={puzzle.shuffle}>
         reshuffle
       </Button>
+      <nav aria-label="Topics">
+        <ul className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-sm">
+          {TOPICS.map((item, index) => (
+            <li key={item.title}>
+              <button
+                type="button"
+                className="link cursor-pointer"
+                onClick={() => setSelectedTopic(index)}
+              >
+                {item.title}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
       <Modal
         isOpen={selectedTopic !== null}
         onClose={closeModal}
